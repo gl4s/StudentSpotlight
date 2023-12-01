@@ -1,0 +1,30 @@
+/* Footer.css */
+.custom-footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    background-color: #001449;
+    color: #fff;
+    padding: 20px;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-label {
+    margin: 0 50px;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-labels {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-label:hover {
+    text-decoration: underline;
+}

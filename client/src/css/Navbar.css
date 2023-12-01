@@ -1,0 +1,47 @@
+/* Navbar.css */
+.custom-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    background-color: #012677;
+
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 55px;
+    /* Adjust the size as needed */
+    height: auto;
+    margin-right: 10px;
+    /* Adjust the spacing between logo and label */
+}
+
+.label-right {
+    padding-right: 6%;
+    
+}
+
+.label-left,
+.label-right {
+    color: #fff;
+}
+
+.thin-label {
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.bold-label {
+    font-size: large;
+    font-weight: bold;
+}

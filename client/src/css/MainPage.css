@@ -1,0 +1,75 @@
+body {
+    background-color: #888888 !important;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    margin: 0;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.content-box {
+    background-color: #394240; /* Contrast background color */
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 70px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.section-box {
+    background-color: #193434; /* Contrast background color */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-header {
+    color: #64a6a6;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.custom-button {
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: #008080;
+    color: #fff;
+    font-size: 1.5rem;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    margin:auto !important;
+}
+
+.custom-button:hover {
+    background-color: #004d4d;
+    color: #fff;
+}
+
+.mini-banner {
+    height: 12rem;
+    background-color: #75b8b8;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 1em;
+}
+
+.label {
+    font-size: 1.5rem;
+    font-style: italic;
+    font-family: Rubik;
+    margin-top: 10px;
+    text-align: center;
+    color: #64a6a6;
+}
+
