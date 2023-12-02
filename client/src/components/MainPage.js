@@ -35,7 +35,7 @@ const MainPage = () => {
   
             <div className="col-md-4">
               <div className="section-box">
-              <p className="label">REGISTRATION</p>
+              <p className="label"> SCHOOL REGISTRATION</p>
                 <div className="mini-banner">Banner 3</div>                
                 <Link to="/registration" className="btn btn-primary custom-button">
                   Registration

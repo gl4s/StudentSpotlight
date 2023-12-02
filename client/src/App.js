@@ -7,7 +7,6 @@ import Contact from './components/Contact.js';
 import Legal from './components/Legal.js';
 import StudentLogin from './components/StudentLogin';
 import TeacherLogin from './components/TeacherLogin';
-import Registration from './components/Registration';
 import SchoolReg from './components/SchoolReg.js';
 
 const App = () => {
@@ -21,8 +20,7 @@ const App = () => {
         <Route path="/legal" element={<Legal />} />
         <Route path="/studentlogin" element={<StudentLogin />} />
         <Route path="/teacherlogin" element={<TeacherLogin />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/schoolregistration" element={<SchoolReg/>} />  
+        <Route path="/registration" element={<SchoolReg />} />  
       </Routes>
     </Router>
   );
