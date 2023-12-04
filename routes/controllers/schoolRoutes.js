@@ -1,6 +1,7 @@
 // schoolRoutes.js
 const express = require('express');
 const router = express.Router();
+const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pool = require('../../db');
@@ -19,10 +20,12 @@ router.post('/register', async (req, res) => {
     await pool.query('START TRANSACTION');
 
     // Insert school into the Schools table
+    // schoolRoutes.js
     const [schoolResult] = await pool.query(
       'INSERT INTO Schools (SchoolName, SchoolIdentifier, Address) VALUES (?, ?, ?)',
-      [schoolName, schoolIdentifier, address]
+      [schoolName, schoolIdentifier || null, address]
     );
+    console.log('Received School Registration Data:', req.body);
 
     const schoolId = schoolResult.insertId;
 
@@ -49,6 +52,21 @@ router.post('/register', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+//Fetching all schools in db
+router.get('/schools', async (req, res) => {
+  try {
+    console.log('Fetching schools...');
+    const [schools] = await pool.query('SELECT * FROM Schools');
+    console.log('Schools fetched successfully:', schools);
+
+    res.json(schools);
+  } catch (error) {
+    console.error('Error fetching schools', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 module.exports = router;
 

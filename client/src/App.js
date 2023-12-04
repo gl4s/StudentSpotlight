@@ -1,13 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MainPage from './components/MainPage';
-import AboutUs from './components/AboutUs';
+import MainPage from './components/MainPage.js';
+import AboutUs from './components/AboutUs.js';
 import Documentation from './components/Documentation.js';
 import Contact from './components/Contact.js';
 import Legal from './components/Legal.js';
-import StudentLogin from './components/StudentLogin';
-import TeacherLogin from './components/TeacherLogin';
+import StudentLogin from './components/StudentLogin.js';
+import TeacherLogin from './components/TeacherLogin.js';
 import SchoolReg from './components/SchoolReg.js';
+import Student from './components/Student.js';
+import Teacher from './components/Teacher.js';
+import SchoolAdmin from './components/SchoolAdmin.js';
+import SystemAdmin from './components/SystemAdmin.js';
 
 const App = () => {
   return (
@@ -20,7 +24,11 @@ const App = () => {
         <Route path="/legal" element={<Legal />} />
         <Route path="/studentlogin" element={<StudentLogin />} />
         <Route path="/teacherlogin" element={<TeacherLogin />} />
-        <Route path="/schoolregistration" element={<SchoolReg />} />  
+        <Route path="/schoolregistration" element={<SchoolReg />} />
+        <Route path="/student" element={<Student />} />
+        <Route path="/teacher" element={<Teacher />} />
+        <Route path="/schooladmin" element={<SchoolAdmin />} />
+        <Route path="/systemadmin" element={<SystemAdmin />} />  
       </Routes>
     </Router>
   );
