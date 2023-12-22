@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pool = require('../../db');
 const schoolRoutes = require('./schoolRoutes'); // Import schoolRoutes
+const authenticateToken = require('./authMiddleware');
 
 // Register User
 router.post('/register', async (req, res) => {
@@ -40,17 +41,29 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     // Fetch user from the database
-    const [result] = await pool.query('SELECT * FROM Users WHERE Username = ?', [username]);
-    const user = result[0];
+    const [userResult] = await pool.query('SELECT * FROM Users WHERE Username = ?', [username]);
+    const user = userResult[0];
 
-    // Check if user exists and verify password
-    if (user && (await bcrypt.compare(password, user.PasswordHash))) {
-      // Create a JWT token
-      const token = jwt.sign({ userId: user.UserID, userType: user.UserType }, 'your_secret_key', {
-        expiresIn: '1h',
-      });
+    if (user) {
+      // If the user is found, fetch the corresponding school based on the school identifier
+      const [schoolResult] = await pool.query('SELECT * FROM Schools WHERE SchoolIdentifier = ?', [username]);
+      const school = schoolResult[0];
 
-      res.json({ userId: user.UserID, userType: user.UserType, token });
+      // Check if user exists and verify password
+      if (user && school && (await bcrypt.compare(password, user.PasswordHash))) {
+        // Create a JWT token
+        const token = jwt.sign(
+          { userId: user.UserID, userType: user.UserType, schoolId: school.SchoolID },
+          'appletree',
+          {
+            expiresIn: '1h',
+          }
+        );
+
+        res.json({ userId: user.UserID, userType: user.UserType, schoolId: school.SchoolID, token });
+      } else {
+        res.status(401).json({ error: 'Invalid credentials' });
+      }
     } else {
       res.status(401).json({ error: 'Invalid credentials' });
     }
@@ -58,6 +71,11 @@ router.post('/login', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
+});
+
+
+router.get('/verify', authenticateToken, (req, res) => {
+  res.json({ message: 'You are authenticated!', user: req.user });
 });
 
 router.use('/school', schoolRoutes);

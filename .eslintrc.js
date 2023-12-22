@@ -20,7 +20,7 @@ module.exports = {
       'react-hooks',
     ],
     rules: {
-      // Additional rules can be added here
+      // Additional rules
     },
     settings: {
         react: {
