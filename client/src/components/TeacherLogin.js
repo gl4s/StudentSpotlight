@@ -22,7 +22,7 @@ const TeacherLogin = () => {
         // Fetch the list of schools when the component mounts
         const fetchSchools = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/api/mainpage/schools');
+                const response = await axios.get('http://localhost:3001/api/school/schools', { withCredentials: false });
                 setSchools(response.data);
             } catch (error) {
                 console.error('Error fetching schools', error);
@@ -34,39 +34,49 @@ const TeacherLogin = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-      
-        try {
-          const username = selectedSchool; // Use the school identifier directly as the username
-      
-          // Debug log
-          console.log('Username:', username);
-      
-          const response = await axios.post('http://localhost:3001/api/auth/login', {
-            username,
-            password,
-          });
-      
-          console.log('Login successful!', response.data);
-          window.alert('Login successful!');
-      
-          // Redirect based on user type
-          const userType = response.data.userType;
 
-      
-          if (userType === 'teacher') {
-            navigate('/teacher');
-          } else if (userType === 'schooladmin') {
-            // Redirect to the school admin page with the schoolId
-            navigate(`/schooladmin`);
-          } else if (userType === 'systemadmin') {
-            navigate('/systemadmin');
-          }
+        try {
+            const username = selectedSchool;
+
+            // Debug log
+            console.log('Username:', username);
+
+            // Make a fetch and include the authentication token in the headers
+            const response = await axios.post(
+                'http://localhost:3001/api/auth/login',
+                {
+                    username,
+                    password,
+                },
+            );
+
+            console.log('Login successful!', response.data);
+
+            const userType = response.data.userType;
+            const token = response.data.token;
+
+            console.log('User Type:', userType);
+            localStorage.setItem('token', token);
+
+            window.alert('Login successful!');
+
+            if (userType === 'teacher') {
+                navigate('/teacher');
+            } else if (userType === 'schooladmin') {
+                // Redirect to the school admin page with the schoolId
+                navigate(`/schooladmin`);
+            } else if (userType === 'systemadmin') {
+                navigate('/systemadmin');
+            }
         } catch (error) {
-          // Handle login error
-          console.error('Login failed!', error.response?.data);
-          setError(error.response?.data?.message || 'Login failed');
+            // Handle login error
+            console.error('Login failed!', error.response?.data);
+            setError(error.response?.data?.message || 'Login failed');
         }
-      };
+    };
+
+
+
 
     return (
         <div className='container main-container'>

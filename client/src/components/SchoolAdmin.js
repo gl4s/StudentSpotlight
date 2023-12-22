@@ -3,45 +3,61 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar.js';
 import Footer from './Footer.js';
 import axios from 'axios';
-import MainSchoolAdminComp from './MainSchoolAdminComp.js';
+import MainSchoolAdminComp from './MainSchoolAdminComp';
 
 const SchoolAdmin = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [verificationAttempted, setVerificationAttempted] = useState(false);
     const navigate = useNavigate();
+
     useEffect(() => {
         const verifyToken = async () => {
             try {
                 const token = localStorage.getItem('token');
+                console.log('Token:', token);
+                
                 if (!token) {
                     setIsAuthenticated(false);
+                    navigate('/teacherlogin');
                     return;
                 }
-
+        
                 const response = await axios.get('http://localhost:3001/api/auth/verify', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-
+        
                 setIsAuthenticated(true);
             } catch (error) {
-                setIsAuthenticated(false);
                 console.error('Authentication failed:', error);
+                navigate('/teacherlogin');
+            } finally {
+                setVerificationAttempted(true);
             }
         };
 
-        verifyToken();
-    }, []);
+        if (!verificationAttempted) {
+            verifyToken();
+        }
+    }, [navigate, verificationAttempted]);
+
+    if (!verificationAttempted) {
+        return null;
+    }
 
     if (!isAuthenticated) {
-        navigate('/teacherlogin');
-        return null; // or render a loading spinner or message
+        return (
+            <div>
+                <p>Authentication failed. Please log in again.</p>
+            </div>
+        );
     }
 
     return (
         <div className='container main-container'>
             <Navbar />
-            {isAuthenticated && <MainSchoolAdminComp />}
+            <MainSchoolAdminComp />
             <Footer />
         </div>
     );
