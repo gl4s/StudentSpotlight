@@ -13,6 +13,13 @@ import Teacher from './components/Teacher.js';
 import SchoolAdmin from './components/SchoolAdmin.js';
 import SystemAdmin from './components/SystemAdmin.js';
 
+import Members from './components/SchoolAdmin/Members.js';
+import NewUser from './components/SchoolAdmin/NewUser.js';
+import SchoolMeta from './components/SchoolAdmin/SchoolMeta.js';
+import SchoolSchedule from './components/SchoolAdmin/SchoolSchedule.js';
+import Statistics from './components/SchoolAdmin/Statistics.js';
+import SubjectAssignment from './components/SchoolAdmin/SubjectAssignment.js';
+
 const App = () => {
   return (
     <Router>
@@ -29,6 +36,14 @@ const App = () => {
         <Route path="/teacher" element={<Teacher />} />
         <Route path="/schooladmin" element={<SchoolAdmin />} />
         <Route path="/systemadmin" element={<SystemAdmin />} />  
+
+        <Route path="/members" element={<Members />} />
+        <Route path="/newuser" element={<NewUser />} />
+        <Route path="/schoolmeta" element={<SchoolMeta />} />
+        <Route path="/schoolschedule" element={<SchoolSchedule />} />
+        <Route path="/statistics" element={<Statistics />} />
+        <Route path="/subjectassignment" element={<SubjectAssignment />} />
+
       </Routes>
     </Router>
   );

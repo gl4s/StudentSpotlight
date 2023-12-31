@@ -226,3 +226,16 @@ CREATE TABLE Attendance (
     FOREIGN KEY (ScheduleID) REFERENCES Schedule(ScheduleID),
     FOREIGN KEY (StudentID) REFERENCES Users(UserID)
 );
+
+--2023.12.23
+ALTER TABLE Schools
+ADD COLUMN SchoolLevel VARCHAR(50),
+ADD COLUMN EducationLevel VARCHAR(50);
+
+ALTER TABLE users
+ADD COLUMN BirthDate VARCHAR(10);
+
+
+
+ALTER TABLE Users
+DROP COLUMN Salt;

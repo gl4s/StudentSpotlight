@@ -33,7 +33,7 @@ exports.registerSchool = async (req, res) => {
       await schoolModel.commitTransaction();
 
       // Create a JWT token
-      const token = jwt.sign({ userId, userType: 'schooladmin' }, tokenSecretKey, { expiresIn: '1h' });
+      const token = jwt.sign({ userId, userType: 'schooladmin' }, tokenSecretKey, { expiresIn: '2h' });
 
       // Send the token back to the client
       res.json({ schoolId, userId, token });

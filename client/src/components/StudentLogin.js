@@ -13,14 +13,12 @@ const StudentLogin = () => {
     // const [employeeId, setEmployeeId] = useState('');
     // const [password, setPassword] = useState('');
     // const [error, setError] = useState(null);
-
     // const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch the list of schools when the component mounts
         const fetchSchools = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/api/mainpage/schools');
+                const response = await axios.get('http://localhost:3001/api/school/schools');
                 setSchools(response.data);
             } catch (error) {
                 console.error('Error fetching schools', error);
@@ -60,7 +58,7 @@ const StudentLogin = () => {
             <Navbar />
             <div className="login-box">
                 <div className='login-header'>
-                    <Link to="/" className="back-button">&#9664; Back</Link>
+                    <Link to="/" className="back-button"> Back</Link>
                     <h2 className="login-label">Student Login</h2>
                 </div>
                 <form className="login-form" onSubmit={handleLogin}>

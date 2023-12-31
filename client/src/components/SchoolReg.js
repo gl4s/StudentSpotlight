@@ -55,7 +55,7 @@ const SchoolReg = () => {
             <Navbar />
             <div className="registration-box">
                 <div className='registration-header'>
-                    <Link to="/" className="back-button">◀ Back</Link>
+                    <Link to="/" className="back-button">Back</Link>
                     <h2 className="registration-label">School Registration</h2>
                 </div>
                 <form className="registration-form" onSubmit={handleRegistration}>

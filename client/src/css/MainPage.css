@@ -1,5 +1,5 @@
 body {
-    background-color: #888888 !important;
+    background-color: #4a4a4a !important;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
     margin: 0;
@@ -9,19 +9,27 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    display: flex; /* Use flexbox to align sections horizontally */
+    flex-direction: column; /* Stack sections vertically on smaller screens */
+    align-items: center; /* Center items horizontally */
+}
+
+.content-box, .section-box, .mini-banner {
+    width: 100%; /* Make all sections take up the full width */
+    box-sizing: border-box; /* Include padding and border in the total width */
 }
 
 .content-box {
-    background-color: #394240; /* Contrast background color */
+    background-color: #1a2226;
     padding: 20px;
     border-radius: 12px;
-    margin-top: 70px;
+    margin-top: 20px; /* Adjusted margin for consistency */
     margin-bottom: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .section-box {
-    background-color: #193434; /* Contrast background color */
+    background-color: #193434;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 12px;
@@ -72,4 +80,3 @@ body {
     text-align: center;
     color: #64a6a6;
 }
-

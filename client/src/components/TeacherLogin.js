@@ -19,7 +19,6 @@ const TeacherLogin = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch the list of schools when the component mounts
         const fetchSchools = async () => {
             try {
                 const response = await axios.get('http://localhost:3001/api/school/schools', { withCredentials: false });
@@ -36,7 +35,7 @@ const TeacherLogin = () => {
         e.preventDefault();
 
         try {
-            const username = selectedSchool;
+            const username = `${selectedSchool}-${employeeId}`;
 
             // Debug log
             console.log('Username:', username);
@@ -54,6 +53,7 @@ const TeacherLogin = () => {
 
             const userType = response.data.userType;
             const token = response.data.token;
+            // const schoolName = response.data.schoolName;
 
             console.log('User Type:', userType);
             localStorage.setItem('token', token);
@@ -83,7 +83,7 @@ const TeacherLogin = () => {
             <Navbar />
             <div className="login-box">
                 <div className='login-header'>
-                    <Link to="/" className="back-button">&#9664; Back</Link>
+                    <Link to="/" className="back-button"> Back</Link>
                     <h2 className="login-label">Teacher Login</h2>
                 </div>
                 <form className="login-form" onSubmit={handleLogin}>
@@ -97,7 +97,7 @@ const TeacherLogin = () => {
                         >
                             <option value="">Select...</option>
                             {schools.map((school) => (
-                                <option key={school.SchoolID} value={school.SchoolIdentifier}>
+                                <option key={school.SchoolID} value={school.SchoolName}>
                                     {school.SchoolName}
                                 </option>
                             ))}
