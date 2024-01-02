@@ -1,0 +1,191 @@
+/* EditUserModal.css */
+
+.ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.5) !important; /* Set your desired background color and opacity */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-user-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #333;
+    background-color: #1a2226;
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.edit-user-modal form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.edit-user-modal label {
+    margin: 10px 0;
+    color: #fff;
+}
+
+.edit-user-modal input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: #999;
+    width: 100%;
+    /* Set the width to 100% */
+    box-sizing: border-box;
+}
+
+.edit-user-modal button {
+    background-color: #394240;
+    border: 1px solid #3498db;
+    max-width: 80px;
+    color: #3498db;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px !important;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 20px;
+}
+
+.edit-user-modal button:hover {
+    background-color: aqua;
+}
+
+.edit-user-modal .save-button {
+    background-color: #009cb1;
+    color: white; 
+    max-width: fit-content;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.edit-user-modal .save-button:hover {
+    background-color: #0097a7;
+}
+
+.edit-user-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-user-modal .modal-header .close-button {
+    background: none;
+    border: none;
+    max-width: 80px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #3498db;
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #394240;
+    border: 1px solid #3498db;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 20px;
+    order: -1;
+}
+
+/* MembersSchoolAdminComp.css */
+/* Add any specific styles for the table and layout here */
+
+.members-school-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+}
+
+.members-school-admin .box {
+    margin: 20px;
+    background-color: #1a2226;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.members-school-admin .box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1a2226;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.members-school-admin .back-button {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.members-school-admin .back-button:hover {
+    color: #f0f0f0;
+}
+
+.members-school-admin .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.members-school-admin th,
+.members-school-admin td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.members-school-admin th {
+    background-color: #1a2226;
+    color: white;
+}
+
+.members-school-admin tr:hover {
+    background-color: #444;
+}
+
+.members-school-admin .btn {
+    padding: 8px 16px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.members-school-admin .btn-info {
+    background-color: #3498db;
+    color: white;
+}
+
+.members-school-admin .btn-info:hover {
+    background-color: #2980b9;
+}
+
+.members-school-admin .btn-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.members-school-admin .btn-danger:hover {
+    background-color: #c0392b;
+}

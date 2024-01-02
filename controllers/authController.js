@@ -96,7 +96,7 @@ async function handleUserRegistration(user, req, res) {
 
 
 
-// Login User (without authentication)
+// Login User
 exports.loginUser = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -175,7 +175,7 @@ exports.loginUser = async (req, res) => {
 
 
 
-// Verify User (with authentication)
+// Verify User
 exports.verifyUser = (req, res) => {
   res.json({ message: 'You are authenticated!', user: req.user });
 };
