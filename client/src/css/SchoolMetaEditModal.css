@@ -1,0 +1,131 @@
+/* SchoolMetaEditModal.css */
+
+.ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.5) !important; /* Set your desired background color and opacity */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #333;
+    background-color: #1a2226;
+    max-width: 800px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.edit-modal form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.edit-modal label {
+    margin: 10px 0;
+    color: #fff;
+    width: 200px;
+    font-size: 16px;
+}
+
+.edit-modal input {
+    margin-bottom: 4px;
+    padding: 2px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: #999;
+    width: 100%;
+    min-width: 70px !important;
+    box-sizing: border-box;
+}
+
+.edit-modal button {
+    background-color: #394240;
+    border: 1px solid #3498db;
+    max-width: 80px;
+    color: #3498db;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 4px !important;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 6px;
+}
+
+.edit-modal button:hover {
+    background-color: #0097a7;
+}
+
+.edit-modal .save-button {
+    background-color: #009cb1;
+    color: white; 
+    max-width: fit-content;
+    margin-top: 20px;
+    margin: 2rem 0 0 16rem;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.edit-modal .save-button:hover {
+    background-color: #0097a7;
+}
+
+.edit-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-modal .modal-header .close-button {
+    background: none;
+    border: none;
+    max-width: 80px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #3498db;
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: #394240;
+    border: 1px solid #3498db;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin-bottom: 10px;
+    order: -1;
+}
+
+.edit-modal form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+  
+  .edit-modal .form-field {
+    margin: 5px;
+  }
+
+.navbar {
+    z-index: 9999 !important;
+}
+
+.footer {
+    z-index: 9999 !important;
+}
+  

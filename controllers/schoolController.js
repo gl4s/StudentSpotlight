@@ -50,14 +50,52 @@ exports.registerSchool = async (req, res) => {
 
 // Fetching all schools from db
 exports.getAllSchools = async (req, res) => {
-    try {
-      console.log('Fetching schools...');
-      const schools = await schoolModel.getAllSchools();
-      console.log('Schools fetched successfully:', schools);
-  
-      res.json(schools);
-    } catch (error) {
-      console.error('Error fetching schools', error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  };
+  try {
+    console.log('Fetching schools...');
+    const schools = await schoolModel.getAllSchools();
+    console.log('Schools fetched successfully:', schools);
+
+    res.json(schools);
+  } catch (error) {
+    console.error('Error fetching schools', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+exports.updateSchool = async (req, res) => {
+  try {
+    const { schoolId } = req.params;
+    const schoolData = req.body;
+
+    await schoolModel.updateSchool(schoolId, schoolData);
+
+    res.json({ message: 'School updated successfully' });
+  } catch (error) {
+    console.error('Error updating school:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+// Update User
+exports.updateUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const userData = req.body;
+
+    await schoolModel.updateUser(userId, userData);
+
+    res.json({ message: 'User updated successfully' });
+  } catch (error) {
+    console.error('Error updating user:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+exports.getSchoolById = async (req, res) => {
+  try {
+    const school = await schoolModel.getSchoolById(req.params.schoolId);
+    res.json(school);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching school data' });
+  }
+};

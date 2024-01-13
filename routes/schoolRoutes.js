@@ -9,6 +9,15 @@ router.post('/register', schoolController.registerSchool);
 // Fetching all schools from db
 router.get('/schools', schoolController.getAllSchools);
 
+// Fetching a specific school from db
+router.get('/schools/:schoolId', schoolController.getSchoolById);
+
+// Update School
+router.put('/schools/:schoolId', schoolController.updateSchool);
+
+// Update User
+router.put('/users/:userId', schoolController.updateUser)
+
 module.exports = router;
 
 

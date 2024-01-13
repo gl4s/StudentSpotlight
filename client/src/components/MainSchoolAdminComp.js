@@ -5,7 +5,7 @@ import '../css/SchoolAdminComp.css';
 
 const MainSchoolAdminComp = () => {
     const [remainingTime, setRemainingTime] = useState(0);
-    const [schoolName, setSchoolName] = useState(''); // Add this line
+    const [schoolName, setSchoolName] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const MainSchoolAdminComp = () => {
             const timeDifference = expirationTime - currentTime;
 
             setRemainingTime(Math.floor(timeDifference / 1000)); // Convert milliseconds to seconds
-            setSchoolName(decodedToken.schoolName); // Add this line
+            setSchoolName(decodedToken.schoolName);
 
             // Update the remaining time every second
             const intervalId = setInterval(() => {
@@ -51,7 +51,7 @@ const MainSchoolAdminComp = () => {
     return (
         <div className="content-box">
             <div className="header">
-                <h2 className="title">{schoolName}</h2> {/* Change this line */}
+                <h2 className="title">{schoolName}</h2>
                 <div className="logout-section">
                     <button className="logout-button" onClick={handleLogout}>
                         Logout
