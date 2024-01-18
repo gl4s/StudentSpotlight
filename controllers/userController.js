@@ -1,5 +1,6 @@
 // controllers/userController.js
 const pool = require('../db');
+const bcrypt = require('bcrypt')
 
 exports.getSchoolMembers = async (req, res) => {
     try {
@@ -13,10 +14,10 @@ exports.getSchoolMembers = async (req, res) => {
 
         if (filter === 'all') {
             query = 'SELECT * FROM Users WHERE UserType IN (?, ?) AND Username LIKE ?';
-            queryParams = ['student', 'teacher', `%${requestingSchoolId}.%`];
+            queryParams = ['student', 'teacher', `${requestingSchoolId}.%`];
         } else {
             query = 'SELECT * FROM Users WHERE UserType = ? AND Username LIKE ?';
-            queryParams = [filter, `%${requestingSchoolId}.%`];
+            queryParams = [filter, `${requestingSchoolId}.%`];
         }
 
         console.log('Generated SQL query:', query);
@@ -67,23 +68,21 @@ exports.deleteUser = async (req, res) => {
 
 exports.editUser = async (req, res) => {
     try {
-      const userId = req.params.userId;
-      const updatedData = req.body;
-  
-      const { FirstName, LastName, Email, PhoneNumber, BirthDate } = updatedData;
-  
-      await pool.query(
-        'UPDATE Users SET FirstName = ?, LastName = ?, Email = ?, PhoneNumber = ?, BirthDate = ? WHERE UserID = ?',
-        [FirstName, LastName, Email, PhoneNumber, BirthDate, userId]
-      );
-  
-      res.json({ success: true });
+        const userId = req.params.userId;
+        const updatedData = req.body;
+
+        const { FirstName, LastName, Email, PhoneNumber, BirthDate } = updatedData;
+
+        await pool.query(
+            'UPDATE Users SET FirstName = ?, LastName = ?, Email = ?, PhoneNumber = ?, BirthDate = ? WHERE UserID = ?',
+            [FirstName, LastName, Email, PhoneNumber, BirthDate, userId]
+        );
+
+        res.json({ success: true });
     } catch (error) {
-      console.error('Error editing user:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Error editing user:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-  };
-  
-  
+};
 
 

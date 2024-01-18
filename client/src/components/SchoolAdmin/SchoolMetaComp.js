@@ -2,10 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import SchoolMetaEditModal from './SchoolMetaEditModal';
+import AddClassModal from './AddClassModal';
+import ActiveClassModal from './ActiveClassModal';
 import '../../css/SchoolMeta.css';
+
+
+const parseJwt = (token) => {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split('')
+      .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+      .join('')
+  );
+
+  return JSON.parse(jsonPayload);
+};
 
 const SchoolMetaComp = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isAddClassModalOpen, setIsAddClassModalOpen] = useState(false);
+  const [isActiveClassModalOpen, setIsActiveClassModalOpen] = useState(false);
   const [schoolName, setSchoolName] = useState('');
   const [editableFields, setEditableFields] = useState({
     SchoolName: '',
@@ -30,62 +48,50 @@ const SchoolMetaComp = () => {
     }
   }, []);
 
-  const parseJwt = (token) => {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split('')
-        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-        .join('')
-    );
-
-    return JSON.parse(jsonPayload);
-  };
 
   const handleOpenEditModal = async () => {
     setIsEditModalOpen(true);
-    
+
     // Fetch existing data when opening the modal
     try {
       const token = localStorage.getItem('token');
       const decodedToken = parseJwt(token);
       const schoolId = decodedToken.schoolID;
-  
+
+      console.log('Fetching school data for school ID:', schoolId); //debug log
+
       const response = await axios.get(`http://localhost:3001/api/school/schools/${schoolId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       const schoolData = response.data;
+      console.log('Fetched school data:', schoolData); //debug log
       setEditableFields(schoolData);
     } catch (error) {
       console.error('Error fetching school data:', error);
     }
   };
-  
-  
-  
-  
 
   const handleCloseEditModal = () => {
     setIsEditModalOpen(false);
   };
 
-  const handleEditSchool = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      // Implement your edit logic using axios
-      // Example: await axios.put(`/api/schools/${editableFields.SchoolID}`, editableFields, {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // });
-      // Close the modal after editing
-      handleCloseEditModal();
-    } catch (error) {
-      console.error('Error editing school:', error);
-    }
+  const handleOpenAddClassModal = () => {
+    setIsAddClassModalOpen(true);
+  };
+
+  const handleCloseAddClassModal = () => {
+    setIsAddClassModalOpen(false);
+  };
+
+  const handleOpenActiveClassModal = () => {
+    setIsActiveClassModalOpen(true);
+
+  };
+
+  const handleCloseActiveClassModal = () => {
+    setIsActiveClassModalOpen(false);
   };
 
   return (
@@ -101,14 +107,32 @@ const SchoolMetaComp = () => {
         <div className="modal-buttons">
           <button onClick={handleOpenEditModal}>Edit School Info</button>
         </div>
+
+        <div className="modal-buttons">
+          <button onClick={handleOpenAddClassModal}>Add New Class</button>
+        </div>
+
+        <div className="modal-buttons">
+          <button onClick={handleOpenActiveClassModal}>Active Classes</button>
+        </div>
       </div>
 
       <SchoolMetaEditModal
         isOpen={isEditModalOpen}
         onClose={handleCloseEditModal}
-        onEdit={handleEditSchool}
         editableFields={editableFields}
         setEditableFields={setEditableFields}
+        parseJwt={parseJwt}
+      />
+
+      <AddClassModal
+        isOpen={isAddClassModalOpen}
+        onClose={handleCloseAddClassModal}
+      />
+
+      <ActiveClassModal
+        isOpen={isActiveClassModalOpen}
+        onClose={handleCloseActiveClassModal}
       />
     </div>
   );

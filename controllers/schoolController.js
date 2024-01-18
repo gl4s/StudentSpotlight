@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const schoolModel = require('../models/schoolModel');
 require('dotenv').config()
 const tokenSecretKey = process.env.JWT_SECRET;
-console.log(process.env.JWT_SECRET)
+console.log(process.env.JWT_SECRET);
 
 // Register School
 exports.registerSchool = async (req, res) => {
@@ -62,34 +62,34 @@ exports.getAllSchools = async (req, res) => {
   }
 };
 
-exports.updateSchool = async (req, res) => {
-  try {
-    const { schoolId } = req.params;
-    const schoolData = req.body;
+// exports.updateSchool = async (req, res) => {
+//   try {
+//     const { schoolId } = req.params;
+//     const schoolData = req.body;
 
-    await schoolModel.updateSchool(schoolId, schoolData);
+//     await schoolModel.updateSchool(schoolId, schoolData);
 
-    res.json({ message: 'School updated successfully' });
-  } catch (error) {
-    console.error('Error updating school:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+//     res.json({ message: 'School updated successfully' });
+//   } catch (error) {
+//     console.error('Error updating school:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// };
 
 // Update User
-exports.updateUser = async (req, res) => {
-  try {
-    const { userId } = req.params;
-    const userData = req.body;
+// exports.updateUser = async (req, res) => {
+//   try {
+//     const { userId } = req.params;
+//     const userData = req.body;
 
-    await schoolModel.updateUser(userId, userData);
+//     await schoolModel.updateUser(userId, userData);
 
-    res.json({ message: 'User updated successfully' });
-  } catch (error) {
-    console.error('Error updating user:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+//     res.json({ message: 'User updated successfully' });
+//   } catch (error) {
+//     console.error('Error updating user:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// };
 
 exports.getSchoolById = async (req, res) => {
   try {
@@ -97,5 +97,19 @@ exports.getSchoolById = async (req, res) => {
     res.json(school);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching school data' });
+  }
+};
+
+exports.editSchoolAdmin = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const updatedData = req.body;
+
+    const result = await schoolModel.editSchoolAdmin(userId, updatedData);
+
+    res.json(result);
+  } catch (error) {
+    console.error('Error editing school admin:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 };

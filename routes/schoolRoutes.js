@@ -13,10 +13,14 @@ router.get('/schools', schoolController.getAllSchools);
 router.get('/schools/:schoolId', schoolController.getSchoolById);
 
 // Update School
-router.put('/schools/:schoolId', schoolController.updateSchool);
+// router.put('/schools/:schoolId', schoolController.updateSchool);
 
 // Update User
-router.put('/users/:userId', schoolController.updateUser)
+// router.put('/users/:userId', schoolController.updateUser);
+
+//Update both at once
+router.put('/editSchoolAdmin/:userId', schoolController.editSchoolAdmin);
+
 
 module.exports = router;
 

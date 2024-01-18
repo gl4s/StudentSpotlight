@@ -22,12 +22,14 @@ const authRoutes = require('./routes/authRoutes');
 const schoolRoutes = require('./routes/schoolRoutes');
 const mainPageRoute = require('./routes/mainPageRoute');
 const userRoutes = require('./routes/userRoutes');
+const classRoutes = require('./routes/classRoutes');
 
 // Use middleware and routes
 app.use('/api/auth', authRoutes);
 app.use('/api/mainpage', authenticateToken, mainPageRoute);
 app.use('/api/school', schoolRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/classes', classRoutes);
 
 
 // Server start check

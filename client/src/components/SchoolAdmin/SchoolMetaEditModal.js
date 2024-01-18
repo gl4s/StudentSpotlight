@@ -1,26 +1,77 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import axios from 'axios';
 import '../../css/SchoolMetaEditModal.css';
 
 Modal.setAppElement('#root');
 
-const SchoolMetaEditModal = ({ isOpen, onClose, onEdit, editableFields, setEditableFields }) => {
+const SchoolMetaEditModal = ({ isOpen, onClose, onEdit, editableFields, setEditableFields, parseJwt }) => {
     const [newPassword, setNewPassword] = useState('');
+
+    useEffect(() => {
+        // Fetch existing data when opening the modal
+        const fetchData = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const decodedToken = parseJwt(token);
+                const schoolId = decodedToken.schoolID;
+                const response = await axios.get(`http://localhost:3001/api/school/schools/${schoolId}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                const schoolData = response.data;
+                setEditableFields(schoolData);
+            } catch (error) {
+                console.error('Error fetching school data:', error);
+            }
+        };
+
+        if (isOpen) {
+            fetchData();
+        }
+    }, [isOpen, setEditableFields]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setEditableFields((prevData) => ({ ...prevData, [name]: value }));
     };
 
-    const handlePasswordChange = () => {
-        setEditableFields((prevData) => ({ ...prevData, 'Password': newPassword }));
+    const handleSubmit = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const decodedToken = parseJwt(token);
+            const schoolId = decodedToken.schoolID;
+
+            console.log('Submitting form with school ID:', schoolId); //debug log
+
+            const apiUrl = `http://localhost:3001/api/school/editSchoolAdmin/${schoolId}`;
+            const headers = {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            };
+
+            // Include the SchoolID in the request data
+            const updatedData = { ...editableFields, SchoolID: schoolId };
+
+            // If a new password is provided, update the password hash
+            if (newPassword) {
+                console.log('New password provided:', newPassword);
+                updatedData.Password = newPassword; // Include the new password in the request data
+            }
+
+            console.log('Sending updated data:', updatedData);
+
+            await axios.put(apiUrl, updatedData, { headers });
+            if (onEdit) {
+                onEdit(editableFields);
+            }
+            onClose();
+        } catch (error) {
+            console.error('Error editing school:', error);
+        }
     };
 
-    const handleSubmit = () => {
-        handlePasswordChange();
-        onEdit(editableFields);
-        onClose();
-    };
 
 
     return (
@@ -130,8 +181,6 @@ const SchoolMetaEditModal = ({ isOpen, onClose, onEdit, editableFields, setEdita
                         onChange={handleInputChange}
                     />
                 </div>
-
-                
 
                 <button type="button" className="save-button" onClick={handleSubmit}>
                     Save Changes
