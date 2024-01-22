@@ -8,7 +8,7 @@ class classModel {
         [className, schoolId, headTeacherId]
       );
 
-      return result.insertId; // Returns the ID of the newly added class
+      return result.insertId;
     } catch (error) {
       throw error;
     }
