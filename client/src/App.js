@@ -20,6 +20,11 @@ import SchoolSchedule from './components/SchoolAdmin/SchoolSchedule.js';
 import Statistics from './components/SchoolAdmin/Statistics.js';
 import SubjectAssignment from './components/SchoolAdmin/SubjectAssignment.js';
 
+import TeacherClasses from './components/Teacher/TeacherClasses.js';
+import TeacherGrades from './components/Teacher/TeacherGrades.js';
+import TeacherProfile from './components/Teacher/TeacherProfile.js';
+import TeacherAssignments from './components/Teacher/TeacherAssignments.js';
+
 const App = () => {
   return (
     <Router>
@@ -43,6 +48,11 @@ const App = () => {
         <Route path="/schoolschedule" element={<SchoolSchedule />} />
         <Route path="/statistics" element={<Statistics />} />
         <Route path="/subjectassignment" element={<SubjectAssignment />} />
+
+        <Route path="/teacherclasses" element={<TeacherClasses />} />
+        <Route path="/teacherassignments" element={<TeacherAssignments />} />
+        <Route path="/teachergrades" element={<TeacherGrades />} />
+        <Route path="/teacherprofile" element={<TeacherProfile />} />
 
       </Routes>
     </Router>

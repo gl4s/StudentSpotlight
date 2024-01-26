@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar.js';
 import Footer from './Footer.js';
+import '../css/TeacherLogin.css'
 import '../css/Navbar.css';
 import '../css/Footer.css';
 import axios from 'axios';
