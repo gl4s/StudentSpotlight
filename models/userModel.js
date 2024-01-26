@@ -27,7 +27,21 @@ class UserModel {
       throw error;
     }
   }
+
+  async getAvailableTeachers() {
+    try {
+      const result = await pool.query(
+        'SELECT UserID, FirstName, LastName FROM users WHERE UserType = "teacher" AND ClassID IS NULL'
+      );
+      console.log(result);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
-module.exports = new UserModel();
+const userModelInstance = new UserModel();
+
+module.exports = userModelInstance;
 
