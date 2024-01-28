@@ -49,11 +49,6 @@ const App = () => {
         <Route path="/statistics" element={<Statistics />} />
         <Route path="/subjectassignment" element={<SubjectAssignment />} />
 
-        <Route path="/teacherclasses" element={<TeacherClasses />} />
-        <Route path="/teacherassignments" element={<TeacherAssignments />} />
-        <Route path="/teachergrades" element={<TeacherGrades />} />
-        <Route path="/teacherprofile" element={<TeacherProfile />} />
-        
       </Routes>
     </Router>
   );

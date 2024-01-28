@@ -8,7 +8,7 @@ class classModel {
         [className, schoolId, headTeacherId]
       );
 
-      return result.insertId;
+      return result.insertId; 
     } catch (error) {
       throw error;
     }
