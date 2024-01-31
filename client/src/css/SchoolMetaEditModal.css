@@ -14,7 +14,7 @@
     transform: translate(-50%, -50%);
     text-align: center;
     color: #333;
-    background-color: #1a2226;
+    background-color: #3f3d3d;
     max-width: 1000px;
     width: 100%;
     padding: 10px;
@@ -50,10 +50,10 @@
 }
 
 .edit-modal button {
-    background-color: #394240;
+    /* background-color: #394240; */
     border: 1px solid #3498db;
     max-width: 80px;
-    color: #3498db;
+    /* color: #3498db; */
     padding: 5px 5px;
     border: none;
     border-radius: 4px !important;
@@ -127,5 +127,9 @@
 
 .footer {
     z-index: 9999 !important;
+}
+
+.success-message {
+    color:#0097a7;
 }
   

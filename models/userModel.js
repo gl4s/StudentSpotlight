@@ -1,6 +1,6 @@
 // models/userModel.js
 const pool = require('../db');
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const { DB_NAME } = process.env;
 
 class UserModel {
@@ -31,11 +31,16 @@ class UserModel {
   async getAvailableTeachers() {
     try {
       const result = await pool.query(
-        'SELECT UserID, FirstName, LastName FROM users WHERE UserType = "teacher" AND ClassID IS NULL'
+        `SELECT UserID, FirstName, LastName 
+         FROM Users 
+         WHERE UserType = 'teacher' 
+         AND ClassID IS NULL`
       );
-      console.log(result);
+  
+      console.debug('Available teachers:', result);
       return result;
     } catch (error) {
+      console.error('Error getting available teachers:', error);
       throw error;
     }
   }

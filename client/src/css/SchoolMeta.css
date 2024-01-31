@@ -7,11 +7,13 @@
 
 .box {
   width: 800px;
-  background-color: #1a2226;
+  background-color: #3f3d3d;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
   padding: 20px; /* Adjust padding as needed */
+  display: flex;
+  flex-direction: column; /* Ensure contents stack vertically */
 }
 
 .header {
@@ -48,21 +50,18 @@
 
 .modal-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 10px; /* Adjust the gap between buttons */
+  justify-content: space-between; /* Distribute items evenly along the main axis */
 }
 
 .modal-buttons button {
   font-size: 16px;
-  max-width: 30% !important;
-  color: #3498db !important;
   font-weight: 400 !important;
-  padding: 10px 15px;
-  background-color: #394240;
+  /* padding: 10px 15px; */
   border: 1px solid #3498db;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+
 }
 
 /* Adjust modal styles */

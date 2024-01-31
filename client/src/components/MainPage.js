@@ -16,7 +16,7 @@ const MainPage = () => {
             <div className="col-md-4">
               <div className="section-box">
               <p className="label">STUDENT PAGE</p>
-                <div className="mini-banner">Banner 1</div>
+                <img src="../../media/pexels-andrea-piacquadio-3768126.jpg" alt="Student Banner" className="mini-banner" />
                 <Link to="/studentlogin" className="btn btn-primary custom-button">
                   Login
                 </Link>
@@ -26,7 +26,7 @@ const MainPage = () => {
             <div className="col-md-4">
               <div className="section-box">
               <p className="label">TEACHER PAGE</p>
-                <div className="mini-banner">Banner 2</div>                
+                <img src="../../media/pexels-christina-morillo-1181534.jpg" alt="Teacher Banner" className="mini-banner" />                
                 <Link to="/teacherlogin" className="btn btn-primary custom-button">
                   Login
                 </Link>
@@ -36,7 +36,7 @@ const MainPage = () => {
             <div className="col-md-4">
               <div className="section-box">
               <p className="label"> SCHOOL REGISTRATION</p>
-                <div className="mini-banner">Banner 3</div>                
+              <img src="../../media/pexels-pixabay-256467.jpg" alt="School Registration Banner" className="mini-banner" />
                 <Link to="/schoolregistration" className="btn btn-primary custom-button">
                   Registration
                 </Link>

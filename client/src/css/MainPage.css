@@ -1,5 +1,5 @@
 body {
-    background-color: #7DC3F6 !important;
+    background-color: #bebebe !important;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
     margin: 0;
@@ -20,7 +20,7 @@ body {
 }
 
 .content-box {
-    background-color: #1a2226;
+    background-color: #3f3d3d;
     padding: 20px;
     border-radius: 12px;
     margin-top: 20px; /* Adjusted margin for consistency */
@@ -29,7 +29,7 @@ body {
 }
 
 .section-box {
-    background-color: #193434;
+    background-color: #f0f0f0;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 12px;
@@ -65,8 +65,8 @@ body {
 
 .mini-banner {
     height: 12rem;
-    background-color: #75b8b8;
-    padding: 10px;
+    background-color: #cccccc;
+    padding: 1px;
     text-align: center;
     border-radius: 8px;
     margin-bottom: 1em;

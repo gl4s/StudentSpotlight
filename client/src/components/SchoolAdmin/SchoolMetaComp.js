@@ -106,13 +106,7 @@ const SchoolMetaComp = () => {
 
         <div className="modal-buttons">
           <button onClick={handleOpenEditModal}>Edit School Info</button>
-        </div>
-
-        <div className="modal-buttons">
           <button onClick={handleOpenAddClassModal}>Add New Class</button>
-        </div>
-
-        <div className="modal-buttons">
           <button onClick={handleOpenActiveClassModal}>Active Classes</button>
         </div>
       </div>

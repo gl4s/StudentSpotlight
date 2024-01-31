@@ -1,0 +1,62 @@
+/* ActiveClassModal.css */
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #75b8b8;
+    background-color: #3f3d3d;
+}
+
+.close-button {
+    font-size: 16px;
+    color: #3498db !important;
+    font-weight: 400 !important;
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #394240;
+    border: 1px solid #3498db;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.class-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    display: flex; /* Keep this to maintain horizontal layout */
+    padding: 20px;
+    white-space: nowrap; /* Prevents the cards from wrapping onto the next line */
+}
+
+.card-container {
+    display: flex; /* Change this to flex */
+}
+
+.card {
+    flex: 0 0 auto; /* This will prevent the cards from shrinking and they will retain their width */
+    width: 220px;
+    margin-right: 10px;
+    padding: 12px;
+    background-color: #fff;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    margin: 0;
+}
+
+.card p {
+    margin: 5px 0;
+}
+
+.selected-class-details {
+    padding: 20px;
+}

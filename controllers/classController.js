@@ -26,6 +26,17 @@ class ClassController {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
+  static async getClassesWithTeachers(req, res) {
+    try {
+      const classes = await ClassModel.getClassesWithTeachers();
+      res.json({ classes });
+    } catch (error) {
+      console.error('Error fetching classes with teachers:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
+
 }
 
 module.exports = ClassController;

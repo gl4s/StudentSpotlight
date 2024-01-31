@@ -32,6 +32,7 @@ const MembersSchoolAdminComp = () => {
 
   useEffect(() => {
     fetchSchoolMembers(); // Initial fetch
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]); // Re-fetch when the filter changes
 
   const fetchSchoolMembers = async () => {
@@ -120,39 +121,41 @@ const MembersSchoolAdminComp = () => {
                 ))}
               </select>
             </div>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Username</th>
-                  <th>UserType</th>
-                  <th>FirstName</th>
-                  <th>LastName</th>
-                  <th>BirthDate</th>
-                  <th>UserID</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {schoolMembers.map((member) => (
-                  <tr key={member.UserID}>
-                    <td>{member.Username}</td>
-                    <td>{member.UserType}</td>
-                    <td>{member.FirstName}</td>
-                    <td>{member.LastName}</td>
-                    <td>{member.BirthDate}</td>
-                    <td>{member.UserID}</td>
-                    <td>
-                      <button className="btn btn-info" onClick={() => handleEdit(member)}>
-                        Edit
-                      </button>
-                      <button className="btn btn-danger" onClick={() => handleDelete(member.UserID)}>
-                        Delete
-                      </button>
-                    </td>
+            <div className="table-container">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>UserType</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>BirthDate</th>
+                    <th>UserID</th>
+                    <th>Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {schoolMembers.map((member) => (
+                    <tr key={member.UserID}>
+                      <td>{member.Username}</td>
+                      <td>{member.UserType}</td>
+                      <td>{member.FirstName}</td>
+                      <td>{member.LastName}</td>
+                      <td>{member.BirthDate}</td>
+                      <td>{member.UserID}</td>
+                      <td>
+                        <button className="btn btn-info" onClick={() => handleEdit(member)}>
+                          Edit
+                        </button>
+                        <button className="btn btn-danger" onClick={() => handleDelete(member.UserID)}>
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 

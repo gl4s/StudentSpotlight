@@ -6,8 +6,8 @@
 }
 
 .box {
-  width: 800px;
-  background-color: #1a2226;
+  width: 1000px;
+  background-color: #3f3d3d;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
@@ -20,7 +20,7 @@
   align-items: center;
   padding: 15px;
   border-bottom: 1px solid #75b8b8;
-  background-color: #1a2226;
+  background-color: #3f3d3d;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
@@ -83,29 +83,42 @@ li {
 
 /* ... (previous styles) */
 
+.table-container {
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 400px; /* Set max height to enable scrolling */
+}
+
 .table {
-  width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  width: 100%;
 }
 
 .table th,
 .table td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #75b8b8;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: left; /* Align text to the left */
 }
 
 .table th {
-  background-color: #1a2226;
-  color: #3498db;
+  background-color: #f2f2f2;
+  width: 150px !important; /* Set a fixed width for header cells */
+}
+
+/* Adjust the width of the first column header */
+.table th:first-child {
+  width: auto; /* Set the width of the first column header to auto */
 }
 
 .table td {
-  background-color: #fff;
-  color: #333;
+  width: 150px !important; /* Set a fixed width for body cells */
 }
 
 .table button {
   margin-right: 5px;
+}
+
+.table tbody tr {
+  vertical-align: top;
+  white-space: normal;
 }

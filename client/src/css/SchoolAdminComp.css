@@ -14,7 +14,7 @@ body {
 }
 
 .content-box {
-  background-color: #1a2226;
+  background-color: #3f3d3d;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -22,6 +22,7 @@ body {
 }
 
 .header {
+  background-color: #3f3d3d !important;
   display: flex;
   justify-content: space-between;
   align-items: center;

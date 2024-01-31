@@ -9,6 +9,7 @@ const AddClassModal = ({ isOpen, onClose }) => {
   const [availableTeachers, setAvailableTeachers] = useState([]);
   const [selectedClassName, setSelectedClassName] = useState('');
   const [selectedHeadTeacher, setSelectedHeadTeacher] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   // useEffect(() => {
   //   fetch('http://localhost:3001/api/classes/availableteachers')
@@ -24,7 +25,7 @@ const AddClassModal = ({ isOpen, onClose }) => {
     const fetchAvailableTeachers = async () => {
       try {
         const response = await axios.get('http://localhost:3001/api/classes/availableteachers');
-        console.log(response.data);
+        // console.log(response.data);
         setAvailableTeachers(response.data.teachers.flat()); // Change this line
       } catch (error) {
         console.error('Error fetching schools', error);
@@ -54,38 +55,41 @@ const AddClassModal = ({ isOpen, onClose }) => {
     return JSON.parse(jsonPayload);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    // Check if the input fields are empty
+    if (selectedClassName === '' || selectedHeadTeacher === '') {
+      alert('Please fill all the fields before submitting');
+      return;
+    }
+  
     // Get the token from local storage
     const token = localStorage.getItem('token');
-
+  
     // Decode the token
     const decodedToken = parseJwt(token);
-
+  
     // Extract the schoolId
     const schoolId = decodedToken.schoolID;
-
-    fetch('http://localhost:3001/api/classes/addclass', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+  
+    try {
+      const response = await axios.post('http://localhost:3001/api/classes/addclass', {
         className: selectedClassName,
         headTeacherId: selectedHeadTeacher,
         schoolId: schoolId,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          onClose();
-        } else {
-          console.error('Error adding class:', data.error);
-        }
-      })
-      .catch((error) => console.error('Error:', error));
+      });
+  
+      if (response.data.success) {
+        setSuccessMessage('Class added successfully.');
+        setSelectedClassName('');
+        setSelectedHeadTeacher('');
+      } else {
+        console.error('Error adding class:', response.data.error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -96,6 +100,8 @@ const AddClassModal = ({ isOpen, onClose }) => {
           Close
         </button>
       </div>
+
+      {successMessage && <div className="success-message">{successMessage}</div>}
 
       <div>
         <form onSubmit={handleSubmit}>
@@ -122,12 +128,16 @@ const AddClassModal = ({ isOpen, onClose }) => {
                 Select Head Teacher
               </option>
               {availableTeachers.map((teacher) => {
-                console.log(teacher.UserID, teacher.FirstName, teacher.LastName);
-                return (
-                  <option key={teacher.UserID} value={teacher.UserID}>
-                    {teacher.FirstName} {teacher.LastName}
-                  </option>
-                );
+                if (teacher && teacher.UserID && teacher.FirstName && teacher.LastName) {
+                  console.log(teacher.UserID, teacher.FirstName, teacher.LastName);
+                  return (
+                    <option key={teacher.UserID} value={teacher.UserID}>
+                      {teacher.FirstName} {teacher.LastName}
+                    </option>
+                  );
+                } else {
+                  return null;
+                }
               })}
 
             </select>
