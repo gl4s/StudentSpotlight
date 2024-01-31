@@ -37,6 +37,17 @@ class ClassController {
     }
   }
 
+  static async getStudentsBySchoolAndClass(req, res) {
+    const { schoolId, classId } = req.params;
+
+    try {
+      const students = await ClassModel.getStudentsBySchoolAndClass(schoolId, classId);
+      res.json({ students });
+    } catch (error) {
+      console.error('Error fetching students by school and class:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
 }
 
 module.exports = ClassController;

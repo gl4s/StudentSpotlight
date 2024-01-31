@@ -56,6 +56,24 @@ class classModel {
     }
   }
 
+  static async getStudentsBySchoolAndClass(schoolId, classId) {
+    try {
+      const query = `
+        SELECT 
+          UserID,
+          Username,
+          FirstName,
+          LastName
+        FROM Users
+        WHERE SchoolID = ? AND ClassID = ? AND UserType = 'student'
+      `;
+      const [rows] = await db.query(query, [schoolId, classId]);
+      return rows;
+    } catch (error) {
+      console.error('Error getting students by school and class:', error);
+      throw error;
+    }
+  }
 }
 
 module.exports = classModel;

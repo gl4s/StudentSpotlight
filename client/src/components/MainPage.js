@@ -11,7 +11,7 @@ const MainPage = () => {
 
       <div className="container main-container">
         <Navbar />
-        <div className="content-box">
+        {/* <div className="content-box"> */}
           <div className="row">
             <div className="col-md-4">
               <div className="section-box">
@@ -42,7 +42,7 @@ const MainPage = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          {/* </div> */}
         </div>
         <Footer />
       </div>

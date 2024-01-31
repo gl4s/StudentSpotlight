@@ -26,7 +26,7 @@ const NewUserSchoolAdminComp = () => {
       console.error('All fields are required.');
       return;
     }
-  
+
     try {
       const formData = new FormData();
       if (userType) formData.append('userType', userType);
@@ -34,17 +34,17 @@ const NewUserSchoolAdminComp = () => {
       formData.append('lastName', lastName);
       formData.append('email', email);
       formData.append('phoneNumber', phoneNumber);
-  
+
       if (birthdate) {
         formData.append('birthdate', birthdate.toISOString().split('T')[0]);
       }
-  
+
       if (file) {
         formData.append('file', file);
       }
-  
+
       const token = localStorage.getItem('token');
-  
+
       const response = await fetch('http://localhost:3001/api/auth/register', {
         method: 'POST',
         headers: {
@@ -52,17 +52,17 @@ const NewUserSchoolAdminComp = () => {
         },
         body: formData,
       });
-  
+
       if (!response.ok) {
         console.error('HTTP Status:', response.status);
         const text = await response.text();
         console.error('Response Text:', text);
         return;
       }
-  
+
       const responseData = await response.json();
       console.log(responseData);
-  
+
       setUserType('');
       setFirstName('');
       setLastName('');
@@ -74,7 +74,7 @@ const NewUserSchoolAdminComp = () => {
       console.error('Error submitting form:', error);
     }
   };
-  
+
 
   return (
     <div className="new-user-school-admin-container">
@@ -88,6 +88,9 @@ const NewUserSchoolAdminComp = () => {
         <div className="form-group">
           <label className="label" htmlFor="userType">User Type:</label>
           <select className="select" id="userType" value={userType} onChange={handleChange(setUserType)} required>
+            <option value="" disabled>
+              Select User Type 
+            </option>
             <option value="student">Student</option>
             <option value="teacher">Teacher</option>
           </select>
@@ -143,14 +146,14 @@ const NewUserSchoolAdminComp = () => {
             className='date-input'
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="file">Upload File:</label>
           <input type="file" id="file" onChange={handleFileChange} accept=".csv, .xls, .xlsx, .txt" />
-        </div>
+        </div> */}
         <button type="submit" className='submit-button'>Create User</button>
       </form>
     </div>
-  );  
+  );
 };
 
 export default NewUserSchoolAdminComp;

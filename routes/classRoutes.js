@@ -12,4 +12,7 @@ router.get('/availableteachers', classController.getAvailableTeachers);
 // GET endpoint to fetch classes with associated teachers
 router.get('/activeclasses', classController.getClassesWithTeachers);
 
+// GET endpoint to fetch students by school and class
+router.get('/students/:schoolId/:classId', classController.getStudentsBySchoolAndClass);
+
 module.exports = router;

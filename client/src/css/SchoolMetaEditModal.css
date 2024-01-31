@@ -14,7 +14,7 @@
     transform: translate(-50%, -50%);
     text-align: center;
     color: #333;
-    background-color: #3f3d3d;
+    background-color: #f0f0f0;
     max-width: 1000px;
     width: 100%;
     padding: 10px;
@@ -42,7 +42,7 @@
     margin-bottom: 4px;
     padding: 2px;
     border: 1px solid #ccc;
-    background-color: #333;
+    background-color: #fff;
     color: #999;
     width: 100%;
     min-width: 70px !important;
@@ -91,6 +91,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #f0f0f0;
 }
 
 .edit-modal .modal-header .close-button {
@@ -99,10 +100,10 @@
     max-width: 80px;
     cursor: pointer;
     font-size: 14px;
-    color: #3498db;
+    color: #fff;
     text-decoration: none;
     padding: 5px 10px;
-    background-color: #394240;
+    background-color: #fff;
     border: 1px solid #3498db;
     border-radius: 4px;
     cursor: pointer;

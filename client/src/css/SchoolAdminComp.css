@@ -14,15 +14,20 @@ body {
 }
 
 .content-box {
-  background-color: #3f3d3d;
+  background-color: #f0f0f0;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin: auto;
 }
 
+.back-button {
+  background-color: #fff !important;
+  color: #fff !important;
+}
+
 .header {
-  background-color: #3f3d3d !important;
+  background-color: #f0f0f0 !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -68,4 +73,6 @@ button:hover {
   font-size: 18px;
   color: #7f8c8d;
 }
+
+
 
