@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/TeacherComp.css';
 
-const TeacherComp = () => {
+const StudentComp = () => {
     const [remainingTime, setRemainingTime] = useState(0);
 
     const navigate = useNavigate();
@@ -43,7 +43,7 @@ const TeacherComp = () => {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        navigate('/teacherlogin');
+        navigate('/studentlogin');
     };
 
     return (
@@ -101,4 +101,4 @@ const formatTime = (seconds) => {
     return `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 };
 
-export default TeacherComp;
+export default StudentComp;
