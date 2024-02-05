@@ -1,5 +1,6 @@
 const ClassModel = require('../models/classModel');
 const userModelInstance = require('../models/userModel');
+const UserModel = require('../models/userModel');
 
 
 class ClassController {
@@ -27,6 +28,17 @@ class ClassController {
     }
   }
 
+  static async getAvailableStudents(req, res) {
+    try {
+      console.log(userModelInstance); //debug
+      const students = await userModelInstance.getAvailableStudents();
+      res.json({ students });
+    } catch (error) {
+      console.error('Error fetching available teachers:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
+
   static async getClassesWithTeachers(req, res) {
     try {
       const classes = await ClassModel.getClassesWithTeachers();
@@ -37,17 +49,65 @@ class ClassController {
     }
   }
 
-  static async getStudentsBySchoolAndClass(req, res) {
-    const { schoolId, classId } = req.params;
+  static async getStudentsByClass(req, res) {
+    const { classId } = req.params;
 
     try {
-      const students = await ClassModel.getStudentsBySchoolAndClass(schoolId, classId);
+      const students = await ClassModel.getStudentsByClass(classId);
       res.json({ students });
     } catch (error) {
-      console.error('Error fetching students by school and class:', error);
+      console.error('Error fetching students by class:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
+  static async addStudentToClass(req, res) {
+    const { classId } = req.params;
+    const { studentId } = req.body;
+
+    try {
+      const student = await ClassModel.addStudentToClass(classId, studentId);
+
+      res.json({ success: true, message: 'Student added to class successfully', student });
+    } catch (error) {
+      console.error('Error adding student to class:', error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+  }
+
+  static async deleteClass(req, res) {
+    const { classId } = req.params;
+    try {
+      await ClassModel.deleteClass(classId);
+
+      // Debug
+      console.debug('Class deleted. Updating associated users...');
+
+      await UserModel.updateUsersClassId(classId);
+
+      res.status(200).json({ success: true, message: 'Class deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting class:', error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+  }
+
+  static async removeSelectedStudents(req, res) {
+    const { classId } = req.params;
+    const { studentIds } = req.body;
+
+    try {
+      await ClassModel.removeSelectedStudentsFromClass(classId, studentIds);
+
+      // await UserModel.updateUsersClassId(studentIds);
+
+      res.status(200).json({ success: true, message: 'Selected students removed from class successfully' });
+    } catch (error) {
+      console.error('Error removing selected students:', error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+  }
+
 }
 
 module.exports = ClassController;

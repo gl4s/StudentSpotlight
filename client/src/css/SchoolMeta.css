@@ -51,17 +51,20 @@
 .modal-buttons {
   display: flex;
   justify-content: space-between; /* Distribute items evenly along the main axis */
+  margin: auto;
+  
 }
 
 .modal-buttons button {
   font-size: 16px;
   font-weight: 400 !important;
-  /* padding: 10px 15px; */
+  padding: 10px 15px;
   border: 1px solid #3498db;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-
+  margin-left: 25px;
+  margin-right: 25px;
 }
 
 /* Adjust modal styles */

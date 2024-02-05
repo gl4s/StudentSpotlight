@@ -1,68 +1,56 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import "../../css/StudentTable.css";
 
-const StudentTable = ({ classId }) => {
+const StudentTable = ({ classId, refreshData }) => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [availableStudents, setAvailableStudents] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState('');
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState({});
+
+  const fetchStudents = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/api/classes/students/${classId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch students');
+      }
+      const data = await response.json();
+      setStudents(data.students);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching students:', error);
+    }
+  };
+
+  const fetchAvailableStudents = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/api/classes/availablestudents`);
+      const data = response.data;
+      setAvailableStudents(data.students.flat());
+    } catch (error) {
+      console.error('Error fetching available students:', error);
+    }
+  };
 
   useEffect(() => {
-    const fetchStudents = async () => {
-      try {
-        // Fetch students belonging to the selected class
-        const response = await fetch(`http://localhost:3001/api/classes/${classId}/students`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch students');
-        }
-        const data = await response.json();
-        setStudents(data.students);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching students:', error);
-      }
-    };
-
-    const fetchAvailableStudents = async () => {
-      try {
-        // Fetch available students within the school but not assigned to any class
-        const token = localStorage.getItem('token');
-        const { schoolId } = parseJwt(token);
-
-        const response = await fetch(`http://localhost:3001/api/schools/${schoolId}/students/available`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch available students');
-        }
-        const data = await response.json();
-        setAvailableStudents(data.students);
-      } catch (error) {
-        console.error('Error fetching available students:', error);
-      }
-    };
-
     fetchStudents();
     fetchAvailableStudents();
-  }, [classId]);
-
-  const parseJwt = (token) => {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split('')
-        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-        .join('')
-    );
-
-    return JSON.parse(jsonPayload);
-  };
+  }, [classId, refreshData]);
 
   const handleStudentSelect = (event) => {
     setSelectedStudent(event.target.value);
   };
 
+  const handleCheckboxChange = (event, studentId) => {
+    setSelectedCheckboxes({
+      ...selectedCheckboxes,
+      [studentId]: event.target.checked,
+    });
+  };
+
   const addStudent = async () => {
     try {
-      // Add the selected student to the class
       const response = await fetch(`http://localhost:3001/api/classes/${classId}/students`, {
         method: 'POST',
         headers: {
@@ -73,16 +61,61 @@ const StudentTable = ({ classId }) => {
       if (!response.ok) {
         throw new Error('Failed to add student');
       }
-      // After adding the student, fetch updated list of students
       const data = await response.json();
-      setStudents([...students, data.student]);
+      if (data.success) {
+        console.log(data);
+        setSelectedStudent('');
+        refreshData(); // Refresh data after adding student
+      } else {
+        throw new Error('Failed to add student');
+      }
     } catch (error) {
       console.error('Error adding student:', error);
     }
   };
 
+  const deleteClass = async () => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this class?");
+    if (confirmDelete) {
+      try {
+        const response = await axios.delete(`http://localhost:3001/api/classes/${classId}`);
+        if (response.status === 200) {
+          alert("Class deleted successfully!");
+          refreshData(); // Refresh data after deleting class
+        } else {
+          throw new Error('Failed to delete class');
+        }
+      } catch (error) {
+        console.error('Error deleting class:', error);
+      }
+    }
+  };
+
+  const removeSelectedStudent = async () => {
+    const confirmDelete = window.confirm("Are you sure you want to remove selected students from this class?");
+    if (confirmDelete) {
+      try {
+        const selectedStudentIds = Object.keys(selectedCheckboxes).filter(studentId => selectedCheckboxes[studentId]);
+        const response = await axios.delete(`http://localhost:3001/api/classes/${classId}/students`, {
+          data: { studentIds: selectedStudentIds }
+        });
+        if (response.status === 200) {
+          alert("Selected students from this Class removed successfully!");
+          refreshData();
+          fetchStudents();
+          fetchAvailableStudents();
+        } else {
+          throw new Error('Failed to remove selected students');
+        }
+      } catch (error) {
+        console.error('Error removing selected students:', error);
+      }
+    }
+  };
+
+
   return (
-    <div>
+    <div className="student-table-container">
       <h3>Students</h3>
       {loading ? (
         <p>Loading...</p>
@@ -95,32 +128,51 @@ const StudentTable = ({ classId }) => {
               <th>Username</th>
               <th>First Name</th>
               <th>Last Name</th>
-              {/* Add more columns if needed */}
+              <th className="checkbox-column">Select</th>
             </tr>
           </thead>
           <tbody>
             {students.map((student, index) => (
               <tr key={index}>
-                <td>{student.Username}</td>
-                <td>{student.FirstName}</td>
-                <td>{student.LastName}</td>
-                {/* Add more columns if needed */}
+                <td>{student?.Username}</td>
+                <td>{student?.FirstName}</td>
+                <td>{student?.LastName}</td>
+                <td className="checkbox-column">
+                  <input
+                    type="checkbox"
+                    className="checkbox-input"
+                    checked={selectedCheckboxes[student.UserID] || false}
+                    onChange={(event) => handleCheckboxChange(event, student.UserID)}
+                  />
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
       <div>
-        <h3>Add Student</h3>
-        <select value={selectedStudent} onChange={handleStudentSelect}>
-          <option value="">Select Student</option>
-          {availableStudents.map((student) => (
-            <option key={student.StudentID} value={student.StudentID}>
-              {student.FirstName} {student.LastName}
-            </option>
-          ))}
+        <select
+          id="studentSelect"
+          name="studentSelect"
+          value={selectedStudent}
+          onChange={handleStudentSelect}
+        >
+          <option value="" disabled>
+            Select Student
+          </option>
+          {availableStudents.filter(student => typeof student.UserID === 'number').map((student) => {
+            return (
+              <option key={student.UserID} value={student.UserID}>
+                {student.FirstName} {student.LastName}
+              </option>
+            );
+          })}
         </select>
-        <button onClick={addStudent}>Add Student</button>
+        <div className='action-buttons'>
+          <button onClick={addStudent}>Add Selected Students</button>
+          <button onClick={removeSelectedStudent}>Remove Selected Student</button>
+          <button className='delete-button' onClick={deleteClass}>Delete Class</button>
+        </div>
       </div>
     </div>
   );

@@ -36,7 +36,7 @@ class UserModel {
          WHERE UserType = 'teacher' 
          AND ClassID IS NULL`
       );
-  
+
       console.debug('Available teachers:', result);
       return result;
     } catch (error) {
@@ -44,6 +44,36 @@ class UserModel {
       throw error;
     }
   }
+
+  async getAvailableStudents() {
+    try {
+      const result = await pool.query(
+        `SELECT UserID, FirstName, LastName 
+         FROM Users 
+         WHERE UserType = 'student' 
+         AND ClassID IS NULL`
+      );
+
+      console.debug('Available students:', result);
+      return result;
+
+    } catch (error) {
+      console.error('Error getting available students:', error);
+      throw error;
+    }
+  }
+
+  async updateUsersClassId(classId) {
+    try {
+      const updateQuery = 'UPDATE Users SET ClassID = NULL WHERE ClassID = ?';
+      await pool.query(updateQuery, [classId]);
+      console.debug('Users updated successfully for classId:', classId);
+    } catch (error) {
+      console.error('Error updating users ClassID:', error);
+      throw error;
+    }
+  }
+
 }
 
 const userModelInstance = new UserModel();

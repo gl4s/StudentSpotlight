@@ -43,8 +43,7 @@ const SchoolMetaComp = () => {
       const decodedToken = parseJwt(token);
       setSchoolName(decodedToken.schoolName);
     } else {
-      // Handle the case where there's no token
-      // You may want to redirect to the login page or show an error message
+        //TODO: handle no token
     }
   }, []);
 
@@ -52,7 +51,6 @@ const SchoolMetaComp = () => {
   const handleOpenEditModal = async () => {
     setIsEditModalOpen(true);
 
-    // Fetch existing data when opening the modal
     try {
       const token = localStorage.getItem('token');
       const decodedToken = parseJwt(token);

@@ -11,28 +11,18 @@ const AddClassModal = ({ isOpen, onClose }) => {
   const [selectedHeadTeacher, setSelectedHeadTeacher] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-  // useEffect(() => {
-  //   fetch('http://localhost:3001/api/classes/availableteachers')
-  // .then((response) => response.json())
-  // .then((data) => {
-  //   console.log(data[0]);
-  //   setAvailableTeachers(data[0]);
-  // })
-  // .catch((error) => console.error('Error fetching teachers:', error));
-  // }, []);
-
   useEffect(() => {
     const fetchAvailableTeachers = async () => {
       try {
         const response = await axios.get('http://localhost:3001/api/classes/availableteachers');
         // console.log(response.data);
-        setAvailableTeachers(response.data.teachers.flat()); // Change this line
+        setAvailableTeachers(response.data.teachers.flat());
       } catch (error) {
         console.error('Error fetching schools', error);
       }
     };
     fetchAvailableTeachers()
-  }, []);
+  }, [successMessage]);
 
   const handleClassNameChange = (e) => {
     setSelectedClassName(e.target.value);
@@ -84,6 +74,7 @@ const AddClassModal = ({ isOpen, onClose }) => {
         setSuccessMessage('Class added successfully.');
         setSelectedClassName('');
         setSelectedHeadTeacher('');
+
       } else {
         console.error('Error adding class:', response.data.error);
       }

@@ -1,5 +1,9 @@
 /* ActiveClassModal.css */
 
+.edit-modal {
+    max-height: 60%;
+}
+
 .modal-header {
     display: flex;
     justify-content: space-between;
