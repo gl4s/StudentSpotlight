@@ -83,6 +83,7 @@ body {
     font-size: 1rem;
     height: 2.5rem;
     margin:auto !important;
+    width: 100%;
 }
 
 button:hover {

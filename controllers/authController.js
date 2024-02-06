@@ -94,9 +94,6 @@ async function handleUserRegistration(user, req, res) {
   console.log(`User ${userId} registered successfully. Username: ${username} Pw: ${password} bh: ${birthdate}`);
 }
 
-
-
-// Login User
 // Login User
 exports.loginUser = async (req, res) => {
   try {
@@ -137,58 +134,49 @@ exports.loginUser = async (req, res) => {
       } else {
         res.status(401).json({ error: 'Invalid credentials' });
       }
-    } else if (employeeId) {
-      // Check if the extracted employeeId exists in the database and is of UserType 'systemadmin'
-      try {
-        const [userResult] = await pool.query('SELECT * FROM Users WHERE Username = ? AND UserType = ?', [employeeId, 'systemadmin']);
+    } else {
+      // Check if the extracted employeeId exists in the database
+      const [userResult] = await pool.query('SELECT * FROM Users WHERE Username = ?', [employeeId]);
+      const user = userResult[0];
 
-        if (userResult.length === 0) {
-          // User with extracted employeeId doesn't exist or is not a system admin, cannot login
-          return res.status(401).json({ error: 'User not found or invalid user type' });
+      if (!user) {
+        // User not found
+        return res.status(401).json({ error: 'User not found' });
+      }
+
+      if (user.UserType === 'schooladmin') {
+        // SchoolAdmin login
+        // Fetch school from the database
+        const [schoolResult] = await pool.query('SELECT * FROM Schools WHERE SchoolName = ? AND SchoolIdentifier = ?', [school, employeeId]);
+        const schoolInfo = schoolResult[0];
+
+        if (!schoolInfo) {
+          return res.status(401).json({ error: 'Invalid school credentials' });
         }
 
-        // User found and is a system admin, now check the password
-        const user = userResult[0];
         if (user && (await bcrypt.compare(password, user.PasswordHash))) {
-          // Password matches, generate token
+          const token = jwt.sign({ userId: user.UserID, userType: user.UserType, schoolName: school, schoolID: schoolInfo.SchoolID }, tokenSecretKey, {
+            expiresIn: '2h',
+          });
+
+          res.json({ userId: user.UserID, userType: user.UserType, token });
+        } else {
+          res.status(401).json({ error: 'Invalid credentials' });
+        }
+      } else if (user.UserType === 'systemadmin') {
+        // System Admin login
+        if (user && (await bcrypt.compare(password, user.PasswordHash))) {
           const token = jwt.sign({ userId: user.UserID, userType: user.UserType, schoolName: null, schoolID: null }, tokenSecretKey, {
             expiresIn: '2h',
           });
 
           res.json({ userId: user.UserID, userType: user.UserType, token });
         } else {
-          // Password doesn't match
           res.status(401).json({ error: 'Invalid credentials' });
         }
-      } catch (error) {
-        console.error('Error during login:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-      }
-    } else {
-      // SchoolAdmin user login
-      // Fetch school from the database
-      const [schoolResult] = await pool.query('SELECT * FROM Schools WHERE SchoolName = ? AND SchoolIdentifier = ?', [school, employeeId]);
-      const schoolInfo = schoolResult[0];
-
-      const [schoolIdResult] = await pool.query('SELECT SchoolID FROM Schools WHERE SchoolName = ?', [school]);
-      const schoolID = schoolIdResult[0].SchoolID;
-
-      if (!schoolInfo) {
-        return res.status(401).json({ error: 'Invalid school credentials' });
-      }
-
-      // Fetch user from the database
-      const [userResult] = await pool.query('SELECT * FROM Users WHERE Username = ?', [employeeId]);
-      const user = userResult[0];
-
-      if (user && (await bcrypt.compare(password, user.PasswordHash))) {
-        const token = jwt.sign({ userId: user.UserID, userType: user.UserType, schoolName: school, schoolID: schoolID }, tokenSecretKey, {
-          expiresIn: '2h',
-        });
-
-        res.json({ userId: user.UserID, userType: user.UserType, token });
       } else {
-        res.status(401).json({ error: 'Invalid credentials' });
+        // Invalid user type
+        res.status(401).json({ error: 'Invalid user type' });
       }
     }
   } catch (error) {
@@ -196,10 +184,6 @@ exports.loginUser = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
-
-
-
-
 
 // Verify User
 exports.verifyUser = (req, res) => {
