@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const bcrypt = require('bcrypt');
+const dotenv = require('dotenv');
+const db = require('./db');
+dotenv.config();
 const PORT = process.env.PORT || 3001;
+
 
 // Middleware to parse JSON requests
 app.use(express.json());
@@ -32,7 +37,25 @@ app.use('/api/user', userRoutes);
 app.use('/api/classes', classRoutes);
 
 
+//Initialize default Admin
+const createDefaultAdmin = async () => {
+  try {
+    const [adminResult] = await db.query('SELECT * FROM Users WHERE Username = ? AND UserType = ?', [process.env.ADMIN_DEFAULT_NAME, 'systemadmin']);
+    if (adminResult.length === 0) {
+      const defaultAdminPassword = process.env.ADMIN_DEFAULT_PASSWORD;
+      const hashedPassword = await bcrypt.hash(defaultAdminPassword, 10);
+      await db.query('INSERT INTO Users (Username, PasswordHash, UserType) VALUES (?, ?, ?)', [process.env.ADMIN_DEFAULT_NAME, hashedPassword, 'systemadmin']);
+      console.log('Default admin user created successfully.');
+    } else {
+      console.log('Admin user already exists in the database.');
+    }
+  } catch (error) {
+    console.error('Error creating default admin user:', error);
+  }
+};
+
 // Server start check
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  createDefaultAdmin();
 });

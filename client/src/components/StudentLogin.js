@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar.js';
 import Footer from './Footer.js';
 import '../css/Navbar.css';
@@ -7,13 +7,14 @@ import '../css/Footer.css';
 import '../css/StudentLogin.css';
 import axios from 'axios';
 
+
 const StudentLogin = () => {
     const [schools, setSchools] = useState([]);
     const [selectedSchool, setSelectedSchool] = useState('');
-    // const [employeeId, setEmployeeId] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [error, setError] = useState(null);
-    // const navigate = useNavigate();
+    const [studentId, setStudentId] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+    const navigate = useNavigate(); // This line is commented out, so assuming it's not used
 
     useEffect(() => {
         const fetchSchools = async () => {
@@ -28,29 +29,46 @@ const StudentLogin = () => {
         fetchSchools();
     }, []);
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
-        // try {
-        //     // Make an HTTP request to log in the teacher
-        //     const response = await axios.post('http://localhost:3001/api/auth/login', {
-        //         username: selectedSchool + '_' + employeeId, // Assuming you concatenate school name and employee ID
-        //         password,
-        //     });
+        try {
+            const username = `${selectedSchool}-${studentId}`;
 
-        //     // Handle successful login
-        //     console.log('Teacher login successful!', response.data);
+            // Debug log
+            console.log('Username:', username);
 
-        //     // Use an alert box to display a message
-        //     window.alert('Login successful!');
+            const response = await axios.post(
+                'http://localhost:3001/api/auth/login',
+                {
+                    username,
+                    password,
+                },
+            );
 
-        //     // Redirect to the SchoolAdmin subpage
-        //     navigate('/schooladmin');
-        // } catch (error) {
-        //     // Handle login error
-        //     console.error('Teacher login failed!', error.response?.data);
-        //     setError(error.response?.data?.message || 'Login failed');
-        // }
+            // Handle successful login
+            console.log('Student login successful!', response.data);
+
+            window.alert('Login successful!');
+
+            const userType = response.data.userType;
+            const token = response.data.token;
+
+            console.log('User Type:', userType);
+            localStorage.setItem('token', token);
+
+            if (userType === 'student') {
+                navigate('/student');
+            } else {
+                window.alert('Error, try again later')
+            }
+
+
+        } catch (error) {
+            // Handle login error
+            console.error('Student login failed!', error.response?.data);
+            setError(error.response?.data?.error || 'Login failed');
+        }
     };
 
     return (
@@ -62,7 +80,6 @@ const StudentLogin = () => {
                     <h2 className="login-label">Student Login</h2>
                 </div>
                 <form className="login-form" onSubmit={handleLogin}>
-
                     <div className="input-group">
                         <label htmlFor="school">School</label>
                         <select
@@ -80,16 +97,31 @@ const StudentLogin = () => {
                         </select>
                     </div>
                     <div className="input-group">
-                        <label htmlFor="extra">Student ID</label>
-                        <input id="studentid" type="text" placeholder="Student ID" required />
+                        <label htmlFor="studentid">Student ID</label>
+                        <input
+                            id="studentid"
+                            type="text"
+                            placeholder="Student ID"
+                            value={studentId}
+                            onChange={(e) => setStudentId(e.target.value)}
+                            required
+                        />
                     </div>
                     <div className="input-group">
                         <label htmlFor="password">Password</label>
-                        <input id="password" type="password" placeholder="Password" required />
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
                     </div>
 
                     <button className='custom-button' type="submit">Login</button>
                 </form>
+                {error && <p className="error-message">{error}</p>}
             </div>
             <Footer />
         </div>

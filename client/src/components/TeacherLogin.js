@@ -41,7 +41,6 @@ const TeacherLogin = () => {
             // Debug log
             console.log('Username:', username);
 
-            // Make a fetch and include the authentication token in the headers
             const response = await axios.post(
                 'http://localhost:3001/api/auth/login',
                 {
