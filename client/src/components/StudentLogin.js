@@ -7,19 +7,18 @@ import '../css/Footer.css';
 import '../css/StudentLogin.css';
 import axios from 'axios';
 
-
 const StudentLogin = () => {
     const [schools, setSchools] = useState([]);
     const [selectedSchool, setSelectedSchool] = useState('');
     const [studentId, setStudentId] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const navigate = useNavigate(); // This line is commented out, so assuming it's not used
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchSchools = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/api/school/schools');
+                const response = await axios.get('http://localhost:3001/api/school/schools', {withCredentials: false});
                 setSchools(response.data);
             } catch (error) {
                 console.error('Error fetching schools', error);
@@ -90,7 +89,7 @@ const StudentLogin = () => {
                         >
                             <option value="">Select...</option>
                             {schools.map((school) => (
-                                <option key={school.SchoolID} value={school.SchoolIdentifier}>
+                                <option key={school.SchoolID} value={school.SchoolName}>
                                     {school.SchoolName}
                                 </option>
                             ))}

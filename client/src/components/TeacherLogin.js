@@ -12,11 +12,7 @@ const TeacherLogin = () => {
     const [selectedSchool, setSelectedSchool] = useState('');
     const [employeeId, setEmployeeId] = useState('');
     const [password, setPassword] = useState('');
-    // eslint-disable-next-line no-unused-vars
-    const [userType, setUserType] = useState('');
-    // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState(null);
-
     const navigate = useNavigate();
 
     useEffect(() => {

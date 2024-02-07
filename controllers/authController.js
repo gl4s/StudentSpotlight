@@ -114,9 +114,11 @@ exports.loginUser = async (req, res) => {
       const userTypeLabel = userType === '2' ? 'teacher' : 'student';
 
       // Fetch school from the database
-      const [schoolResult] = await pool.query('SELECT * FROM Schools WHERE SchoolID = ?', [schoolId]);
-      const schoolInfo = schoolResult[0];
 
+
+      const [schoolResult] = await pool.query('SELECT * FROM Schools WHERE SchoolName = ?', [school]);
+      const schoolInfo = schoolResult[0];
+      console.log(schoolResult[0]);
       if (!schoolInfo) {
         return res.status(401).json({ error: 'Invalid school credentials(1)' });
       }
