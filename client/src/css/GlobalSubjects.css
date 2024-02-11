@@ -1,0 +1,73 @@
+.subjects-box {
+    min-width: 768px;
+    width: auto;
+    background-color: #f0f0f0;
+    min-height: max-content;
+    border-radius: 20px;
+}
+
+.header {
+    border-radius: 8px !important;
+}
+
+.custom-table-container {
+    overflow: auto;
+    max-height: 300px; /* Adjust height as needed */
+    background-color: #fff;
+}
+
+.custom-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table-container th,
+.custom-table-container td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.custom-table-container th:first-child,
+.custom-table-container td:first-child {
+    width: 80px; 
+}
+
+.custom-table-container th:last-child,
+.custom-table-container td:last-child {
+    width: 100px; 
+}
+
+.custom-add-subject {
+    margin: 20px;
+}
+
+.custom-add-subject input {
+    padding: 8px;
+    margin-right: 10px;
+}
+
+.custom-add-subject button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.custom-add-subject button:hover {
+    background-color: #0056b3;
+}
+
+.delete-button {
+    padding: 6px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #bd2130;
+}

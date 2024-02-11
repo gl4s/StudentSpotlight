@@ -25,6 +25,8 @@ import TeacherGrades from './components/Teacher/TeacherGrades.js';
 import TeacherProfile from './components/Teacher/TeacherProfile.js';
 import TeacherAssignments from './components/Teacher/TeacherAssignments.js';
 
+import GlobalSubjects from './components/SystemAdmin/GlobalSubjects.js';
+
 const App = () => {
   return (
     <Router>
@@ -49,6 +51,7 @@ const App = () => {
         <Route path="/statistics" element={<Statistics />} />
         <Route path="/subjectassignment" element={<SubjectAssignment />} />
 
+        <Route path="/globalsubjects" element={<GlobalSubjects/>} />
       </Routes>
     </Router>
   );
