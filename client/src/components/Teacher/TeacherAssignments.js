@@ -4,6 +4,7 @@ import Navbar from '../Navbar.js';
 import Footer from '../Footer.js';
 import '../../css/Navbar.css';
 import '../../css/Footer.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const TeacherAssignments = () => {
     const [assignmentTitle, setAssignmentTitle] = useState('');

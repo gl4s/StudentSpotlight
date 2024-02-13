@@ -62,10 +62,9 @@ const StudentComp = () => {
                     </div>
                 </div>
                 <div className="buttons">
-                    <button onClick={() => navigate('/TeacherClasses')}>Classes</button>
-                    <button onClick={() => navigate('/TeacherAssignments')}>Assignments</button>
-                    <button onClick={() => navigate('/TeacherGrades')}>Grades</button>
-                    <button onClick={() => navigate('/TeacherProfile')}>Profile</button>
+                    <button onClick={() => navigate('/StudentFullScheduele')}>Schedule</button>                   
+                    <button onClick={() => navigate('/StudentAllGrades')}>Grades</button>
+                    <button onClick={() => navigate('/StudentProfile')}>Profile</button>
                 </div>
             </div>
 
@@ -73,7 +72,7 @@ const StudentComp = () => {
             <div className="content-box">
             <div className='row'>
                 <div className="col-md-6">
-                    <p className='label'>Today's Classes</p>
+                    <p className='label'>Your Last 5 grades</p>
                  
                     <div className="section-box">
                         <p></p>
@@ -81,7 +80,7 @@ const StudentComp = () => {
                 </div>
 
                 <div className="col-md-6">
-                    <p className='label'>Notifications</p>
+                    <p className='label'>Today's Classes</p>
                     
                     <div className="section-box">
                         <p></p>

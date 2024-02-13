@@ -27,6 +27,13 @@ import TeacherAssignments from './components/Teacher/TeacherAssignments.js';
 
 import GlobalSubjects from './components/SystemAdmin/GlobalSubjects.js';
 
+import StudentFullScheduele from './components/Student/StudentFullScheduele.js';
+import StudentAllGrades from './components/Student/StudentAllGrades.js';
+import StudentProfile from './components/Student/StudentProfile';
+
+
+
+
 const App = () => {
   return (
     <Router>
@@ -52,6 +59,17 @@ const App = () => {
         <Route path="/subjectassignment" element={<SubjectAssignment />} />
 
         <Route path="/globalsubjects" element={<GlobalSubjects/>} />
+
+        <Route path="/teacherclasses" element={<TeacherClasses/>}/>
+        <Route path="/teacherassignments" element={<TeacherAssignments/>}/>
+        <Route path="/teachergrades" element={<TeacherGrades/>}/>
+        <Route path="/teacherprofile" element={<TeacherProfile/>}/>
+
+        <Route path="/studentfullscheduele" element={<StudentFullScheduele/>}/>
+        <Route path="/studentallgrades" element={<StudentAllGrades/>}/>
+        <Route path="/studentprofile" element={<StudentProfile/>}/>
+
+        
       </Routes>
     </Router>
   );
