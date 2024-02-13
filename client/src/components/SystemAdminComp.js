@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 // SystemAdmin.js
 const SystemAdmin = () => {
     const [remainingTime, setRemainingTime] = useState(0);
+    // eslint-disable-next-line
     const [schoolName, setSchoolName] = useState('');
     const navigate = useNavigate();
 
@@ -62,7 +63,7 @@ const SystemAdmin = () => {
             <div className="buttons">
                 <button onClick={() => navigate('/schools')}>Schools</button>
                 <button onClick={() => navigate('/globalsubjects')}>Global Subjects</button>
-                <button onClick={() => navigate('/schoolstatistics')}>School Statistics</button>
+                {/* <button onClick={() => navigate('/schoolstatistics')}>School Statistics</button> */}
             </div>
         </div>
     );

@@ -65,7 +65,7 @@ const MainSchoolAdminComp = () => {
                 <button onClick={() => navigate('/subjectassignment')}>Subject Teacher</button>
                 <button onClick={() => navigate('/newuser')}>New Student or Teacher</button>
                 <button onClick={() => navigate('/members')}>Member List</button>
-                <button onClick={() => navigate('/statistics')}>Statistics</button>
+                {/* <button onClick={() => navigate('/statistics')}>Statistics</button> */}
             </div>
         </div>
     );

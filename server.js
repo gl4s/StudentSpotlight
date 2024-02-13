@@ -29,6 +29,7 @@ const mainPageRoute = require('./routes/mainPageRoute');
 const userRoutes = require('./routes/userRoutes');
 const classRoutes = require('./routes/classRoutes');
 const subjectRoutes = require('./routes/subjectRoutes');
+const subjectassignmentRoutes = require('./routes/subjectassignmentRoutes');
 
 // Use middleware and routes
 app.use('/api/auth', authRoutes);
@@ -37,6 +38,7 @@ app.use('/api/school', schoolRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/classes', classRoutes);
 app.use('/api/subjects', subjectRoutes);
+app.use('/api/subjectassignment', subjectassignmentRoutes);
 
 
 //Initialize default Admin
