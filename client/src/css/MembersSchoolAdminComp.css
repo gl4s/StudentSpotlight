@@ -6,7 +6,7 @@
 }
 
 .box {
-  width: 1000px;
+  width: 1400px !important;
   background-color: #f1f1f1 !important;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -113,6 +113,8 @@ li {
 
 .table td {
   width: 150px !important; /* Set a fixed width for body cells */
+  max-height: max-content !important;
+  margin: 4px !important;
 }
 
 .table button {

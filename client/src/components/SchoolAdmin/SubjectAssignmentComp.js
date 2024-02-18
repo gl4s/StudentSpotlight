@@ -9,18 +9,19 @@ const SubjectAssignmentComp = () => {
     const [teachers, setTeachers] = useState([]);
     const [selectedSubject, setSelectedSubject] = useState('');
     const [selectedTeacher, setSelectedTeacher] = useState('');
+    // eslint-disable-next-line
     const [schoolId, setSchoolId] = useState('');
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
             const decodedToken = decodeToken(token);
-            setSchoolId(decodedToken.schoolId);
+            console.log('Decoded Token:', decodedToken); // Debug Point
+            setSchoolId(decodedToken.schoolID); // Use 'schoolID' instead of 'schoolId'
+            fetchTableData();
+            fetchSubjects();
+            fetchTeachers(decodedToken.schoolID); // Pass the schoolId to the fetchTeachers function
         }
-
-        fetchTableData();
-        fetchSubjects();
-        fetchTeachers();
     }, []);
 
     const decodeToken = (token) => {
@@ -50,26 +51,32 @@ const SubjectAssignmentComp = () => {
             });
     };
 
-    const fetchTeachers = () => {
+    const fetchTeachers = (schoolId) => { // Add a parameter to the fetchTeachers function
+        console.log('Fetching teachers with schoolId:', schoolId); // Debug Point
         axios.get(`http://localhost:3001/api/subjectassignment/teachers?schoolId=${schoolId}`)
             .then(response => {
+                console.log('Teachers fetched:', response.data); // Debug Point
                 setTeachers(response.data);
             })
             .catch(error => {
                 console.error('Error fetching teachers:', error);
             });
     };
-    
 
-    const handleDelete = (id) => {
-        axios.delete(`http://localhost:3001/api/subjectassignment/delete/${id}`)
-            .then(response => {
-                console.log(`Deleted row with ID: ${id}`);
-                fetchTableData();
-            })
-            .catch(error => {
-                console.error('Error deleting row:', error);
-            });
+
+    const handleDelete = (assignmentId) => {
+        const userConfirmation = window.confirm('Are you sure you want to delete this subject assignment?');
+        if (userConfirmation) {
+            axios.delete(`http://localhost:3001/api/subjectassignment/delete/${assignmentId}`)
+                .then(response => {
+                    console.log(`Deleted row with ID: ${assignmentId}`);
+                    fetchTableData();
+                })
+                .catch(error => {
+                    console.error('Error deleting row:', error);
+                });
+        }
+
     };
 
     const handleAssign = () => {
@@ -112,10 +119,10 @@ const SubjectAssignmentComp = () => {
                     <tbody>
                         {tableData.map((row, index) => (
                             <tr key={index}>
-                                <td>{row.subject}</td>
-                                <td>{row.teacher}</td>
+                                <td>{row.CourseName}</td>
+                                <td>{row.Teacher}</td>
                                 <td>
-                                    <button className="delete-button" onClick={() => handleDelete(row.id)}>Delete</button>
+                                    <button className="delete-button" onClick={() => handleDelete(row.AssignmentID)}>Delete</button>
                                 </td>
                             </tr>
                         ))}

@@ -59,10 +59,15 @@ class SubjectAssignmentModel {
         let connection;
         try {
             connection = await db.getConnection();
-
-            const selectAssignmentsQuery = 'SELECT * FROM subjectassignments';
+    
+            const selectAssignmentsQuery = `
+                SELECT sa.AssignmentID, s.CourseName, CONCAT(u.FirstName, ' ', u.LastName) as Teacher
+                FROM subjectassignments sa
+                INNER JOIN users u ON sa.TeacherID = u.UserID
+                INNER JOIN subjects s ON sa.Subject = s.CourseID
+            `;
             const [assignments] = await connection.execute(selectAssignmentsQuery);
-
+    
             console.debug('Subject assignments retrieved successfully');
             return assignments;
         } catch (error) {
@@ -82,7 +87,9 @@ class SubjectAssignmentModel {
             let query = 'SELECT * FROM Users WHERE UserType = ? AND Username LIKE ?';
             let queryParams = ['teacher', `${requestingSchoolId}.%.%`];
     
+            console.log('Executing query:', query, 'with parameters:', queryParams); // Debug Point
             const [teachers] = await connection.execute(query, queryParams);
+            console.log('Teachers retrieved:', teachers); // Debug Point
             return teachers;
         } catch (error) {
             console.error('Error retrieving teachers:', error);

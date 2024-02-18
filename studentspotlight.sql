@@ -261,5 +261,9 @@ ALTER TABLE Classes
 ADD COLUMN HeadTeacherID INT,
 ADD FOREIGN KEY (HeadTeacherID) REFERENCES Users(UserID);
 
+ALTER TABLE subjectassignments
+ADD CONSTRAINT unique_assignment UNIQUE (TeacherID, Subject);
+
+
 
 ALTER TABLE tablename AUTO_INCREMENT = 1

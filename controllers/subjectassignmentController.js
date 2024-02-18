@@ -14,7 +14,6 @@ const subjectAssignmentController = {
   assignSubject: async (req, res) => {
     const { subject, teacher } = req.body;
     try {
-      // Assuming SubjectAssignmentModel has a method named assignSubject
       const newAssignmentId = await SubjectAssignmentModel.assignSubject(subject, teacher);
       res.status(201).json({ id: newAssignmentId, message: 'Subject assigned successfully' });
     } catch (error) {
@@ -33,15 +32,17 @@ const subjectAssignmentController = {
       res.status(500).json({ error: 'Failed to delete subject assignment' });
     }
   },
-  
+
   getAllTeachers: async (req, res) => {
     const requestingSchoolId = req.query.schoolId;
+    console.log('Requesting School ID:', requestingSchoolId); // Debug Point
     try {
-        const teachers = await SubjectAssignmentModel.getAllTeachers(requestingSchoolId);
-        res.json(teachers);
+      const teachers = await SubjectAssignmentModel.getAllTeachers(requestingSchoolId);
+      console.log('Teachers retrieved:', teachers); // Debug Point
+      res.json(teachers);
     } catch (error) {
-        console.error('Error retrieving teachers:', error);
-        res.status(500).json({ error: 'Failed to retrieve teachers' });
+      console.error('Error retrieving teachers:', error);
+      res.status(500).json({ error: 'Failed to retrieve teachers' });
     }
 }
 
