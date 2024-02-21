@@ -1,7 +1,7 @@
 /* SchoolMetaEditModal.css */
 
 .ReactModal__Overlay {
-    background-color: rgba(0, 0, 0, 0.5) !important; /* Set your desired background color and opacity */
+    background-color: rgba(0, 0, 0, 0.5) !important; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,8 +16,8 @@
     color: #333;
     background-color: #f0f0f0;
     max-width: 1000px;
-    max-height: 400px;  
-    width: 100%;
+    max-height: max-content !important;  
+    width: 90%; 
     padding: 8px;
     box-sizing: border-box;
     border-radius: 8px;
@@ -55,10 +55,8 @@
 }
 
 .edit-modal button {
-    /* background-color: #394240; */
     border: 1px solid #3498db;
     max-width: 80px;
-    /* color: #3498db; */
     padding: 5px 5px;
     border: none;
     border-radius: 4px !important;
@@ -78,11 +76,8 @@
     background-color: #009cb1;
     color: white; 
     max-width: fit-content;
-    /* margin-top: 10px; */
-    margin: 2rem 0 0 16rem;
-    margin-top: 0;
+    margin: 2rem auto 0 auto; 
     padding: 10px 20px;
-    padding-bottom: 10px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
@@ -122,11 +117,11 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
-  }
-  
-  .edit-modal .form-field {
+}
+
+.edit-modal .form-field {
     margin: 5px;
-  }
+}
 
 .navbar {
     z-index: 9999 !important;
@@ -139,4 +134,17 @@
 .success-message {
     color:#0097a7;
 }
-  
+
+/* Media Queries */
+
+@media only screen and (max-width: 768px) {
+    .edit-modal {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .edit-modal {
+        width: 90%;
+    }
+}
