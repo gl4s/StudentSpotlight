@@ -6,7 +6,8 @@
 }
 
 .box {
-  width: 800px;
+  width: 90%; /* Adjust width to be responsive */
+  max-width: 800px; /* Limit maximum width */
   background-color: #f0f0f0;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -52,7 +53,6 @@
   display: flex;
   justify-content: space-between; /* Distribute items evenly along the main axis */
   margin: auto;
-  
 }
 
 .modal-buttons button {
@@ -89,4 +89,17 @@
   border-radius: 8px;
   max-width: 600px;
   width: 100%;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+  .box {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .box {
+    width: 90%;
+  }
 }
