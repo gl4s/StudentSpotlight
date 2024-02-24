@@ -70,10 +70,13 @@ const ActiveClassModal = ({ isOpen, onClose }) => {
           <h3>Selected Class: {selectedClass.ClassName} |  Head Teacher: {selectedClass.HeadTeacherFirstName} {selectedClass.HeadTeacherLastName}</h3>
           <hr></hr>
           {successMessage && <p className="success-message">{successMessage}</p>}
-          <StudentTable classId={selectedClass.ClassID} refreshData={refreshData}/>
+          <div className="table-container">
+            <StudentTable classId={selectedClass.ClassID} refreshData={refreshData} />
+          </div>
         </div>
       )}
     </Modal>
+
   );
 };
 

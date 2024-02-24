@@ -1,69 +1,62 @@
 .action-buttons {
-    display: flex !important;
-    margin: auto;
-    justify-content: space-between !important;
-    max-width: 400px;
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: space-evenly !important;
+  max-width: 100%;
+  padding-top: 5px;
 }
 
 .action-buttons button {
-    width: max-content  !important;
-    min-width: 120px;
-    margin-top: 20px !important;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 10px !important;
-    font-weight: 400 !important;
-    padding: 10px 15px; 
-    border-radius: 4px !important;
-    cursor: pointer !important;
-    transition: background-color 0.3s, color 0.3 !important;
-}
+  min-width: 25% !important;
+  font-size: 10px !important;
+  padding: 6px 10px !important;
 
-p {
-    margin-bottom: 0 !important;
-}
-
-.delete-button {
-    background-color: rgb(255, 100, 100);
-}
-
-.delete-button:hover {
-    background-color: rgb(255, 30, 30) !important;
 }
 
 .student-table-container {
-    margin-top: 20px;
+  max-height: 280px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 0px;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-table th,
+.student-table td {
+  padding: 6px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.checkbox-column {
+  width: 30px;
+}
+
+.checkbox-input {
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .action-buttons button {
+    min-width: 100px !important;
+    font-size: 8px !important;
+    padding: 4px 10px !important;
   }
-  
-  .student-table {
-    width: 100%;
-    border-collapse: collapse;
+
+  .student-table-container {
+    max-height: 200px !important;
   }
-  
+
   .student-table th,
   .student-table td {
-    padding: 8px;
-    border: 1px solid #ddd;
-    text-align: left;
+    padding: 4px;
   }
-  
-  .student-table th {
-    background-color: #f2f2f2;
-  }
-  
-  .student-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  .student-table tr:hover {
-    background-color: #ddd;
-  }
-  
+
   .checkbox-column {
-    width: 50px;
+    width: 20px !important;
   }
-  
-  .checkbox-input {
-    margin: 0 auto;
-  }
-  
+}

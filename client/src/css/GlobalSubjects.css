@@ -1,18 +1,22 @@
+body {
+    padding-top: 5px;
+}
 .subjects-box {
     min-width: 768px;
     width: auto;
     background-color: #f0f0f0;
-    min-height: max-content;
+    max-height: max-content;
     border-radius: 20px;
 }
 
 .header {
     border-radius: 8px !important;
+    margin-bottom: 5px;
 }
 
 .custom-table-container {
     overflow: auto;
-    max-height: 300px; /* Adjust height as needed */
+    max-height: 280px; /* Adjust height as needed */
     background-color: #fff;
 }
 

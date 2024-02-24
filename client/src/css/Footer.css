@@ -7,7 +7,7 @@
     display: flex;
     background-color: #001449;
     color: #fff;
-    padding: 20px;
+    padding: 10px;
     
     justify-content: center;
     align-items: center;
@@ -27,4 +27,28 @@
 
 .footer-label:hover {
     text-decoration: underline;
+}
+
+@media only screen and (max-width: 768px) {
+    .custom-footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        display: flex;
+        background-color: #001449;
+        color: #fff;
+        padding: 10px;
+        
+        justify-content: center;
+        align-items: center;
+        height: max-content;
+    }
+
+    .footer-label {
+        margin: 0 30px;
+        cursor: pointer;
+        color: #fff;
+        text-decoration: none;
+    }
 }
