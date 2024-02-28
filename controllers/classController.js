@@ -19,14 +19,16 @@ class ClassController {
 
   static async getAvailableTeachers(req, res) {
     try {
-      console.log(userModelInstance); //debug
-      const teachers = await userModelInstance.getAvailableTeachers();
+      const requestingSchoolId = req.query.userId; // Get userId from query parameters
+      console.log("backend entryp: ",requestingSchoolId); //debug
+      const teachers = await userModelInstance.getAvailableTeachers(requestingSchoolId);
       res.json({ teachers });
     } catch (error) {
       console.error('Error fetching available teachers:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
 
   static async getAvailableStudents(req, res) {
     try {
