@@ -32,8 +32,9 @@ class ClassController {
 
   static async getAvailableStudents(req, res) {
     try {
+      const requestingSchoolId = req.query.userId;
       console.log(userModelInstance); //debug
-      const students = await userModelInstance.getAvailableStudents();
+      const students = await userModelInstance.getAvailableStudents(requestingSchoolId);
       res.json({ students });
     } catch (error) {
       console.error('Error fetching available teachers:', error);
@@ -43,13 +44,17 @@ class ClassController {
 
   static async getClassesWithTeachers(req, res) {
     try {
-      const classes = await ClassModel.getClassesWithTeachers();
+      const requestingSchoolId = req.query.userId;
+      console.log('Requesting School ID:', requestingSchoolId);
+      const classes = await ClassModel.getClassesWithTeachers(requestingSchoolId);
+      console.log('Classes:', classes); // Log the classes fetched from the database
       res.json({ classes });
     } catch (error) {
       console.error('Error fetching classes with teachers:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
-  }
+}
+
 
   static async getStudentsByClass(req, res) {
     const { classId } = req.params;

@@ -47,21 +47,19 @@ class UserModel {
     }
   }
 
-
-
-
-  async getAvailableStudents() {
+  async getAvailableStudents(requestingSchoolId) {
     try {
+      console.log('requestingSchoolId:', requestingSchoolId);
       const result = await pool.query(
         `SELECT UserID, FirstName, LastName 
          FROM Users 
          WHERE UserType = 'student' 
-         AND ClassID IS NULL`
+         AND ClassID IS NULL
+         AND Username LIKE ?`, [requestingSchoolId + '.%']
       );
 
       console.debug('Available students:', result);
       return result;
-
     } catch (error) {
       console.error('Error getting available students:', error);
       throw error;
