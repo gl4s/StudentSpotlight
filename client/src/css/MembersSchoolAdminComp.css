@@ -1,8 +1,13 @@
-.dashboard-container {
+.members-school-admin {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.dashboard-container {
+  width: 100%;
+  padding: 0 20px;
 }
 
 .box {
@@ -15,29 +20,26 @@
 }
 
 .box-header {
-  width: 100%;
-  background-color: #f1f1f1 !important;
+  background-color: #f0f0f0 !important;
   display: flex;
-  flex-wrap: wrap; /* Allow items to wrap to the next line on small screens */
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
   border-bottom: 1px solid #75b8b8;
-  background-color: #f0f0f0;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  padding: 10px;
 }
 
 h2 {
   font-size: 24px;
-  color: #3498db !important;
+  color: #3498db;
   margin: 0;
 }
 
 .back-button {
   font-size: 16px;
-  color: #3498db !important;
-  font-weight: 400 !important;
+  color: #3498db;
+  font-weight: 400;
   text-decoration: none;
   padding: 10px 15px;
   background-color: #394240;
@@ -45,12 +47,11 @@ h2 {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  margin-bottom: 20px;
 }
 
 /* ... (other styles) */
 .box-content {
-  padding: 20px;
+  padding: 10px;
 }
 
 .filter-section {
@@ -60,7 +61,7 @@ h2 {
 
 label {
   font-size: 16px;
-  color: #3498db !important;
+  color: #3498db;
   display: block;
   margin-bottom: 5px;
 }
@@ -75,34 +76,57 @@ select {
   color: #333;
 }
 
-l {
+ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-@media only screen and (max-width: 768px) {
-  .box-header {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .back-button {
-    margin-top: 10px;
-  }
+li {
+  margin-bottom: 10px;
+  color: #3498db;
 }
 
-@media only screen and (max-width: 600px) {
-  .box {
-    margin: 10px;
-  }
+/* ... (previous styles) */
 
-  .filter-section {
-    margin-bottom: 10px;
-  }
+.table-container {
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 400px; /* Set max height to enable scrolling */
+}
 
-  .table th,
-  .table td {
-    padding: 6px;
-  }
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: left; /* Align text to the left */
+}
+
+.table th {
+  background-color: #f2f2f2;
+  width: 150px !important; /* Set a fixed width for header cells */
+}
+
+/* Adjust the width of the first column header */
+.table th:first-child {
+  width: auto; /* Set the width of the first column header to auto */
+}
+
+.table td {
+  width: 150px !important; /* Set a fixed width for body cells */
+  max-height: max-content !important;
+  margin: 4px !important;
+}
+
+.table button {
+  margin-right: 5px;
+}
+
+.table tbody tr {
+  vertical-align: top;
+  white-space: normal;
 }

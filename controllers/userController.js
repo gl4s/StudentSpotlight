@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 
 exports.getSchoolMembers = async (req, res) => {
     try {
-        const requestingSchoolId = req.user.schoolID;
+        const requestingSchoolId = req.user.userId;
         console.log('Requesting School ID:', requestingSchoolId);
         const { filter } = req.query;
         console.log('Filter:', filter);

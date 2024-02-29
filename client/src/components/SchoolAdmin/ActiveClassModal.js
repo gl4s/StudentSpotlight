@@ -12,13 +12,18 @@ const ActiveClassModal = ({ isOpen, onClose }) => {
   const [selectedClass, setSelectedClass] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
 
-  const fetchClasses = async () => {
+  const fetchClasses = async (token) => {
     try {
-      const response = await fetch('http://localhost:3001/api/classes/activeclasses');
+      const decodedToken = parseJwt(token);
+      const userId = decodedToken.schoolID;
+      console.log("before the get api call:", decodedToken.userId);
+      const response = await fetch(`http://localhost:3001/api/classes/activeclasses?userId=${userId}`);
+      console.log('Response status:', response.status);
       if (!response.ok) {
         throw new Error('Failed to fetch classes');
       }
       const data = await response.json();
+      console.log('Data:', data);
       setClasses(data.classes);
       setLoading(false);
     } catch (error) {
@@ -26,8 +31,23 @@ const ActiveClassModal = ({ isOpen, onClose }) => {
     }
   };
 
+  const parseJwt = (token) => {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+
+    return JSON.parse(jsonPayload);
+  };
+
   useEffect(() => {
-    fetchClasses();
+    const token = localStorage.getItem('token');
+    console.log('Token:', token); // debug the token
+    fetchClasses(token);
   }, [isOpen]);
 
   const handleClassSelect = (classItem) => {
@@ -36,7 +56,8 @@ const ActiveClassModal = ({ isOpen, onClose }) => {
   };
 
   const refreshData = () => {
-    fetchClasses();
+    const token = localStorage.getItem('token');
+    fetchClasses(token);
   };
 
   return (

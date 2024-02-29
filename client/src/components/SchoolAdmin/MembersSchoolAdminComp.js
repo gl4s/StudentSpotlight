@@ -158,14 +158,14 @@ const MembersSchoolAdminComp = () => {
             </div>
           </div>
         </div>
-
-        <EditUserModal
-          isOpen={isEditModalOpen}
-          onClose={() => setIsEditModalOpen(false)}
-          onEdit={handleEditUser}
-          userData={selectedUserData}
-        />
       </div>
+
+      <EditUserModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        onEdit={handleEditUser}
+        userData={selectedUserData}
+      />
     </div>
   );
 };

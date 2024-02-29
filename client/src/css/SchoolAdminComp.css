@@ -1,5 +1,3 @@
-/* SchoolAdminComp.css */
-
 body {
   font-family: 'Rubik', sans-serif;
   font-weight: 500;
@@ -14,6 +12,8 @@ body {
 }
 
 .content-box {
+  min-width: max-content;
+  max-width: 1000px;
   background-color: #f0f0f0;
   padding: 20px;
   border-radius: 8px;
@@ -74,14 +74,5 @@ button:hover {
   color: #7f8c8d;
 }
 
-@media only screen and (max-width: 768px) {
-  .buttons {
-    flex-direction: column;
-    align-items: center;
-  }
 
-  button {
-    width: auto;
-  }
-}
 
