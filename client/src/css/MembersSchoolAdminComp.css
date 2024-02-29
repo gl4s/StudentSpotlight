@@ -6,7 +6,8 @@
 }
 
 .box {
-  width: 1400px !important;
+  width: 100%;
+  max-width: 1400px;
   background-color: #f1f1f1 !important;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -17,6 +18,7 @@
   width: 100%;
   background-color: #f1f1f1 !important;
   display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line on small screens */
   justify-content: space-between;
   align-items: center;
   padding: 15px;
@@ -46,12 +48,14 @@ h2 {
   margin-bottom: 20px;
 }
 
+/* ... (other styles) */
 .box-content {
   padding: 20px;
 }
 
 .filter-section {
   margin-bottom: 20px;
+  flex-basis: 100%; /* Take full width on small screens */
 }
 
 label {
@@ -71,57 +75,34 @@ select {
   color: #333;
 }
 
-ul {
+l {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-li {
-  margin-bottom: 10px;
-  color: #3498db;
+@media only screen and (max-width: 768px) {
+  .box-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .back-button {
+    margin-top: 10px;
+  }
 }
 
-/* ... (previous styles) */
+@media only screen and (max-width: 600px) {
+  .box {
+    margin: 10px;
+  }
 
-.table-container {
-  overflow-y: auto; /* Enable vertical scrolling */
-  max-height: 400px; /* Set max height to enable scrolling */
-}
+  .filter-section {
+    margin-bottom: 10px;
+  }
 
-.table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.table th,
-.table td {
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-  text-align: left; /* Align text to the left */
-}
-
-.table th {
-  background-color: #f2f2f2;
-  width: 150px !important; /* Set a fixed width for header cells */
-}
-
-/* Adjust the width of the first column header */
-.table th:first-child {
-  width: auto; /* Set the width of the first column header to auto */
-}
-
-.table td {
-  width: 150px !important; /* Set a fixed width for body cells */
-  max-height: max-content !important;
-  margin: 4px !important;
-}
-
-.table button {
-  margin-right: 5px;
-}
-
-.table tbody tr {
-  vertical-align: top;
-  white-space: normal;
+  .table th,
+  .table td {
+    padding: 6px;
+  }
 }

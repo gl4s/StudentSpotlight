@@ -4,7 +4,10 @@ import Navbar from '../../components/Navbar.js';
 import Footer from '../../components/Footer.js';
 import '../../css/Navbar.css';
 import '../../css/Footer.css';
+import '../../css/studentFullScheduele.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 const StudentFullScheduele = () => {
 
     const navigate = useNavigate();
@@ -15,7 +18,7 @@ const StudentFullScheduele = () => {
 
 
     return (
-        <div className='container main-container'>
+        <div className='container main-container container-fluid'>
             <Navbar />
 
             <div className='content-box'>
@@ -23,6 +26,7 @@ const StudentFullScheduele = () => {
                     Back
                 </button>
                 <h2>Weekly Time Schedule</h2>
+                <div className='table-responsive'>
                 <table className="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -116,6 +120,7 @@ const StudentFullScheduele = () => {
                         </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
 
             <Footer />

@@ -47,7 +47,7 @@ const TeacherComp = () => {
 
     return (
         <>
-            {/* Existing content-box */}
+           
             <div className="content-box">
                 <div className="header">
                     <p className='title'>

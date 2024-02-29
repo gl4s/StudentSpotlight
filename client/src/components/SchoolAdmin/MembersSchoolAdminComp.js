@@ -100,11 +100,11 @@ const MembersSchoolAdminComp = () => {
   };
 
   return (
-    <div className='members-school-admin'>
+    <div className='container-fluid members-school-admin'>
       <div className="dashboard-container">
         <div className="box">
           <div className="box-header">
-            <Link to="/schooladmin" className="back-button">
+            <Link to="/schooladmin" className="btn btn-secondary back-button">
               Back
             </Link>
             <h2>School Members</h2>
@@ -112,7 +112,7 @@ const MembersSchoolAdminComp = () => {
           <div className="box-content">
             <div className="filter-section">
               <label htmlFor="filter">Filter by:</label>
-              <select id="filter" value={filter} onChange={handleFilterChange}>
+              <select className="form-select" id="filter" value={filter} onChange={handleFilterChange}>
                 <option value="all">All</option>
                 {userTypes.map((type) => (
                   <option key={type} value={type}>
@@ -121,8 +121,8 @@ const MembersSchoolAdminComp = () => {
                 ))}
               </select>
             </div>
-            <div className="table-container">
-              <table className="table">
+            <div className="table-container table-responsive">
+              <table className="table table-bordered">
                 <thead>
                   <tr>
                     <th>Username</th>

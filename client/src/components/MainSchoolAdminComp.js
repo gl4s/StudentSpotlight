@@ -49,23 +49,38 @@ const MainSchoolAdminComp = () => {
     };
 
     return (
-        <div className="content-box">
-            <div className="header">
-                <h2 className="title">{schoolName}</h2>
-                <div className="logout-section">
-                    <button className="logout-button" onClick={handleLogout}>
-                        Logout
-                    </button>
-                    <p className="counter">Remaining Time: {formatTime(remainingTime)}</p>
+        <div className="container main-container">
+            <div className="content-box">
+                <div className="header">
+                    <h2 className="title">{schoolName}</h2>
+                    <div className="logout-section">
+                        <button className="btn btn-danger logout-button" onClick={handleLogout}>
+                            Logout
+                        </button>
+                        <p className="counter">Remaining Time: {formatTime(remainingTime)}</p>
+                    </div>
                 </div>
-            </div>
-            <div className="buttons">
-                <button onClick={() => navigate('/schoolschedule')}>School Schedule</button>
-                <button onClick={() => navigate('/schoolmeta')}>School Meta</button>
-                <button onClick={() => navigate('/subjectassignment')}>Subject Teacher</button>
-                <button onClick={() => navigate('/newuser')}>New Student or Teacher</button>
-                <button onClick={() => navigate('/members')}>Member List</button>
-                {/* <button onClick={() => navigate('/statistics')}>Statistics</button> */}
+                <div className="buttons">
+                    <button className="btn btn-primary" onClick={() => navigate('/schoolschedule')}>
+                        School Schedule
+                    </button>
+                    <button className="btn btn-primary" onClick={() => navigate('/schoolmeta')}>
+                        School Meta
+                    </button>
+                    <button className="btn btn-primary" onClick={() => navigate('/subjectassignment')}>
+                        Subject Teacher
+                    </button>
+                    <button className="btn btn-primary" onClick={() => navigate('/newuser')}>
+                        New Student or Teacher
+                    </button>
+                    <button className="btn btn-primary" onClick={() => navigate('/members')}>
+                        Member List
+                    </button>
+                   
+                    {/* <button className="btn btn-primary" onClick={() => navigate('/statistics')}>
+                        Statistics
+                    </button> */}
+                </div>
             </div>
         </div>
     );
