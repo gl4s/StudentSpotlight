@@ -10,19 +10,19 @@ const SubjectAssignmentComp = () => {
     const [selectedSubject, setSelectedSubject] = useState('');
     const [selectedTeacher, setSelectedTeacher] = useState('');
     // eslint-disable-next-line
-    const [schoolId, setSchoolId] = useState('');
+    const [userId, setuserId] = useState('');
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
             const decodedToken = decodeToken(token);
             console.log('Decoded Token:', decodedToken); // Debug Point
-            setSchoolId(decodedToken.schoolID); // Use 'schoolID' instead of 'schoolId'
             fetchTableData();
             fetchSubjects();
-            fetchTeachers(decodedToken.schoolID); // Pass the schoolId to the fetchTeachers function
+            fetchTeachers(decodedToken.userId); // Pass the schoolID to the fetchTeachers function
         }
     }, []);
+        
 
     const decodeToken = (token) => {
         const base64Url = token.split('.')[1];
@@ -51,17 +51,31 @@ const SubjectAssignmentComp = () => {
             });
     };
 
-    const fetchTeachers = (schoolId) => { // Add a parameter to the fetchTeachers function
-        console.log('Fetching teachers with schoolId:', schoolId); // Debug Point
-        axios.get(`http://localhost:3001/api/subjectassignment/teachers?schoolId=${schoolId}`)
-            .then(response => {
-                console.log('Teachers fetched:', response.data); // Debug Point
-                setTeachers(response.data);
-            })
-            .catch(error => {
-                console.error('Error fetching teachers:', error);
+    const fetchTeachers = async (schoolId) => {
+        try {
+            const token = localStorage.getItem('token');
+            console.log('Token:', token); // Debug the token
+            const decodedToken = decodeToken(token);
+            console.log("Before the get API call:", decodedToken.userId);
+    
+            const response = await axios.get(`http://localhost:3001/api/subjectassignment/teachers`, {
+                params: {
+                    userId: decodedToken.userId, // Pass the userId parameter
+                    schoolId: schoolId, // Pass the schoolId parameter
+                },
             });
+    
+            console.log('Teachers fetched:', response.data); // Debug the response
+    
+            setTeachers(response.data);
+        } catch (error) {
+            console.error('Error fetching teachers:', error);
+        }
     };
+    
+    
+    
+    
 
 
     const handleDelete = (assignmentId) => {
