@@ -54,7 +54,7 @@ const TeacherComp = () => {
                         Manage your classes, assignments, and grades efficiently.
                     </p>
                     <div className="logout-section">
-                        <button className="logout-button" onClick={handleLogout}>
+                        <button className="btn btn-danger logout-button" onClick={handleLogout}>
                             Logout
                         </button>
                         <p className="counter">Remaining Time: {formatTime(remainingTime)}</p>
@@ -69,25 +69,24 @@ const TeacherComp = () => {
             </div>
 
            
-            <div className="content-box">
-            <div className='row'>
-                <div className="col-md-6">
-                    <p className='label'>Today's Classes</p>
-                 
-                    <div className="section-box">
-                        <p></p>
-                    </div>
-                </div>
-
-                <div className="col-md-6">
-                    <p className='label'>Notifications</p>
-                    
-                    <div className="section-box">
-                        <p></p>
+            <div className="container">
+                <div className="content-box mt-4">
+                    <div className='row'>
+                        <div className="col-md-6">
+                            <p className='label'>Today's Classes</p>
+                            <div className="section-box">
+                                <p></p>
+                            </div>
+                        </div>
+                        <div className="col-md-6">
+                            <p className='label'>Notifications</p>
+                            <div className="section-box">
+                                <p></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </>
     );
 };

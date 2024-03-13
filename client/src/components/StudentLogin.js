@@ -75,14 +75,15 @@ const StudentLogin = () => {
             <Navbar />
             <div className="login-box">
                 <div className='login-header'>
-                    <Link to="/" className="back-button"> Back</Link>
+                    <Link to="/" className="btn btn-secondary">Back</Link>
                     <h2 className="login-label">Student Login</h2>
                 </div>
                 <form className="login-form" onSubmit={handleLogin}>
-                    <div className="input-group">
-                        <label htmlFor="school">School</label>
+                    <div className="mb-3">
+                        <label htmlFor="school" className="form-label">School</label>
                         <select
                             id="school"
+                            className="form-select"
                             value={selectedSchool}
                             onChange={(e) => setSelectedSchool(e.target.value)}
                             required
@@ -95,22 +96,24 @@ const StudentLogin = () => {
                             ))}
                         </select>
                     </div>
-                    <div className="input-group">
-                        <label htmlFor="studentid">Student ID</label>
+                    <div className="mb-3">
+                        <label htmlFor="studentid" className="form-label">Student ID</label>
                         <input
                             id="studentid"
                             type="text"
+                            className="form-control"
                             placeholder="Student ID"
                             value={studentId}
                             onChange={(e) => setStudentId(e.target.value)}
                             required
                         />
                     </div>
-                    <div className="input-group">
-                        <label htmlFor="password">Password</label>
+                    <div className="mb-3">
+                        <label htmlFor="password" className="form-label">Password</label>
                         <input
                             id="password"
                             type="password"
+                            className="form-control"
                             placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -118,7 +121,7 @@ const StudentLogin = () => {
                         />
                     </div>
 
-                    <button className='custom-button' type="submit">Login</button>
+                    <button className='btn btn-primary custom-button' type="submit">Login</button>
                 </form>
                 {error && <p className="error-message">{error}</p>}
             </div>
