@@ -79,14 +79,16 @@ const TeacherLogin = () => {
             <Navbar />
             <div className="login-box">
                 <div className='login-header'>
-                    <Link to="/" className="back-button"> Back</Link>
+                    <Link to="/" className="btn btn-secondary back-button">Back</Link>
                     <h2 className="login-label">Teacher Login</h2>
                 </div>
                 <form className="login-form" onSubmit={handleLogin}>
-                    <div className="input-group">
-                        <label htmlFor="school">School</label>
+                    
+                    <div className="mb-3">
+                        <label htmlFor="school" className="form-label">School</label>
                         <select
                             id="school"
+                            className="form-select"
                             value={selectedSchool}
                             onChange={(e) => setSelectedSchool(e.target.value)}
                             required
@@ -99,30 +101,31 @@ const TeacherLogin = () => {
                             ))}
                         </select>
                     </div>
-                    <div className="input-group">
-                        <label htmlFor="extra">Employee ID</label>
+                    <div className="mb-3">
+                        <label htmlFor="employeeId" className="form-label">Employee ID</label>
                         <input
                             id="employeeId"
                             type="text"
+                            className="form-control"
                             placeholder="Employee ID"
                             value={employeeId}
                             onChange={(e) => setEmployeeId(e.target.value)}
                             required
                         />
                     </div>
-                    <div className="input-group">
-                        <label htmlFor="password">Password</label>
+                    <div className="mb-3">
+                        <label htmlFor="password" className="form-label">Password</label>
                         <input
                             id="password"
                             type="password"
+                            className="form-control"
                             placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-
                     </div>
-                    <button className='custom-button' type="submit">Login</button>
+                    <button className='btn btn-primary custom-button' type="submit">Login</button>
                 </form>
             </div>
             <Footer />
