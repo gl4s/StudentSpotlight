@@ -7,7 +7,6 @@ const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 const csvParser = require('csv-parser');
 const fs = require('fs');
-// const authenticateToken = require('../middlewares/authMiddleware');
 require('dotenv').config()
 const tokenSecretKey = process.env.JWT_SECRET;
 console.log(process.env.JWT_SECRET)
@@ -98,8 +97,6 @@ async function handleUserRegistration(user, req, res) {
 exports.loginUser = async (req, res) => {
   try {
     const { username, password } = req.body;
-
-    console.log('Received username:', username); // Log the received username
 
     // Extract school and employeeId from the username
     const [school, employeeId] = username.split('-');

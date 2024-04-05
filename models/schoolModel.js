@@ -58,20 +58,6 @@ exports.getSchoolById = async (schoolId) => {
   return { ...schoolRows[0], ...userRows[0] };
 };
 
-// exports.updateSchool = async (schoolId, schoolData) => {
-//   await pool.query(
-//     'UPDATE Schools SET SchoolName = ?, SchoolIdentifier = ?, Address = ?, SchoolLevel = ?, EducationLevel = ? WHERE SchoolID = ?',
-//     [schoolData.SchoolName, schoolData.SchoolIdentifier, schoolData.Address, schoolData.SchoolLevel, schoolData.EducationLevel, schoolId]
-//   );
-// };
-
-// exports.updateUser = async (userId, userData) => {
-//   await pool.query(
-//     'UPDATE Users SET Username = ?, PasswordHash = ?, FirstName = ?, LastName = ?, Email = ?, PhoneNumber = ? WHERE UserID = ?',
-//     [userData.Username, userData.PasswordHash, userData.FirstName, userData.LastName, userData.Email, userData.PhoneNumber, userId]
-//   );
-// };
-
 exports.editSchoolAdmin = async (userId, updatedData) => {
   await pool.query('START TRANSACTION');
 
@@ -97,12 +83,6 @@ exports.editSchoolAdmin = async (userId, updatedData) => {
     // Update the Users table based on Username if SchoolIdentifier has changed
     if (updatedData.SchoolIdentifier !== OldSchoolIdentifier) {
       const [existingUser] = await pool.query('SELECT * FROM Users WHERE Username = ?', [updatedData.SchoolIdentifier]);
-
-      if (existingUser && existingUser.length > 0) {
-        // Handle the case where the new username already exists
-        // Optionally, you can implement a logic here if needed
-        // For now, it assumes that the new username already exists and doesn't generate a unique one
-      }
 
       await pool.query('UPDATE Users SET Username = ? WHERE Username = ?', [updatedData.SchoolIdentifier, currentUsername]);
     }

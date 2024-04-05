@@ -12,11 +12,6 @@ router.get('/schools', schoolController.getAllSchools);
 // Fetching a specific school from db
 router.get('/schools/:schoolId', schoolController.getSchoolById);
 
-// Update School
-// router.put('/schools/:schoolId', schoolController.updateSchool);
-
-// Update User
-// router.put('/users/:userId', schoolController.updateUser);
 
 //Update both at once
 router.put('/editSchoolAdmin/:userId', schoolController.editSchoolAdmin);

@@ -35,10 +35,8 @@ const subjectAssignmentController = {
 
   getAllTeachers: async (req, res) => {
     const requestingSchoolId = req.query.schoolId;
-    console.log('Requesting School ID:', requestingSchoolId); // Debug Point
     try {
       const teachers = await SubjectAssignmentModel.getAllTeachers(requestingSchoolId);
-      console.log('Teachers retrieved:', teachers); // Debug Point
       res.json(teachers);
     } catch (error) {
       console.error('Error retrieving teachers:', error);

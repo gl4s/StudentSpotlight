@@ -62,34 +62,6 @@ exports.getAllSchools = async (req, res) => {
   }
 };
 
-// exports.updateSchool = async (req, res) => {
-//   try {
-//     const { schoolId } = req.params;
-//     const schoolData = req.body;
-
-//     await schoolModel.updateSchool(schoolId, schoolData);
-
-//     res.json({ message: 'School updated successfully' });
-//   } catch (error) {
-//     console.error('Error updating school:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// };
-
-// Update User
-// exports.updateUser = async (req, res) => {
-//   try {
-//     const { userId } = req.params;
-//     const userData = req.body;
-
-//     await schoolModel.updateUser(userId, userData);
-
-//     res.json({ message: 'User updated successfully' });
-//   } catch (error) {
-//     console.error('Error updating user:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// };
 
 exports.getSchoolById = async (req, res) => {
   try {

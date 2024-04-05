@@ -19,7 +19,7 @@ class ClassController {
 
   static async getAvailableTeachers(req, res) {
     try {
-      console.log(userModelInstance); //debug
+      
       const teachers = await userModelInstance.getAvailableTeachers();
       res.json({ teachers });
     } catch (error) {
@@ -30,7 +30,7 @@ class ClassController {
 
   static async getAvailableStudents(req, res) {
     try {
-      console.log(userModelInstance); //debug
+      
       const students = await userModelInstance.getAvailableStudents();
       res.json({ students });
     } catch (error) {
@@ -80,9 +80,6 @@ class ClassController {
     try {
       await ClassModel.deleteClass(classId);
 
-      // Debug
-      console.debug('Class deleted. Updating associated users...');
-
       await UserModel.updateUsersClassId(classId);
 
       res.status(200).json({ success: true, message: 'Class deleted successfully' });
@@ -98,8 +95,6 @@ class ClassController {
 
     try {
       await ClassModel.removeSelectedStudentsFromClass(classId, studentIds);
-
-      // await UserModel.updateUsersClassId(studentIds);
 
       res.status(200).json({ success: true, message: 'Selected students removed from class successfully' });
     } catch (error) {

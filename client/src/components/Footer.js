@@ -16,9 +16,6 @@ const Footer = () => {
         <Link to="/contact" className="footer-label">
           CONTACT
         </Link>
-        <Link to="/legal" className="footer-label">
-          PRIVACY & LEGAL
-        </Link>
       </div>
     </footer>
   );
