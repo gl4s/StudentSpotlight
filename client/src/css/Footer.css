@@ -52,3 +52,27 @@
         text-decoration: none;
     }
 }
+@media only screen and (max-width: 320px) {
+    .custom-footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        display: flex;
+        background-color: #001449;
+        color: #fff;
+        padding: 10px;
+        justify-content: space-around; /* Adjusted justify-content for better spacing */
+        align-items: center;
+        height: max-content;
+    }
+
+    .footer-label {
+        margin: 0 5px; /* Adjusted margin for better spacing */
+        cursor: pointer;
+        color: #fff;
+        text-decoration: none;
+        font-size: 12px; /* Adjusted font size for better readability on small screens */
+    }
+}
+

@@ -2,8 +2,10 @@ const SubjectAssignmentModel = require('../models/subjectassignmentModel');
 
 const subjectAssignmentController = {
   getAllSubjectAssignments: async (req, res) => {
+    const requestingSchoolId = req.query.userId;
     try {
-      const subjectAssignments = await SubjectAssignmentModel.getAllSubjectAssignments();
+      const subjectAssignments = await SubjectAssignmentModel.getAllSubjectAssignments(requestingSchoolId);
+      console.log("assignmentek: ",subjectAssignments)
       res.json(subjectAssignments);
     } catch (error) {
       console.error('Error retrieving subject assignments:', error);
@@ -42,7 +44,7 @@ const subjectAssignmentController = {
       console.error('Error retrieving teachers:', error);
       res.status(500).json({ error: 'Failed to retrieve teachers' });
     }
-}
+  }
 
 };
 

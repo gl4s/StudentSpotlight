@@ -103,3 +103,39 @@
     width: 90%;
   }
 }
+
+@media only screen and (max-width: 320px) {
+  .box {
+    width: 100%;
+    padding: 10px; /* Adjust padding for smaller screens */
+    box-sizing: border-box; /* Include padding in the width calculation */
+  }
+
+  .header {
+    padding: 8px; /* Adjust padding for smaller screens */
+  }
+
+  .title {
+    font-size: 18px; /* Adjust font size for smaller screens */
+    margin: 0;
+  }
+
+  .back-button {
+    font-size: 12px; /* Adjust font size for smaller screens */
+    padding: 8px 10px; /* Adjust padding for smaller screens */
+  }
+
+  .modal {
+    padding: 10px; /* Adjust padding for smaller screens */
+    max-width: 100%; /* Full width for smaller screens */
+  }
+
+  .modal-buttons button {
+    font-size: 12px; /* Adjust font size for smaller screens */
+    padding: 8px 10px; /* Adjust padding for smaller screens */
+    margin-left: 10px; /* Adjust margin for smaller screens */
+    margin-right: 10px; /* Adjust margin for smaller screens */
+  }
+}
+
+

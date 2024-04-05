@@ -1,0 +1,27 @@
+@media (min-width: 768px) and (max-width: 1024px) {
+    .content-box {
+      padding: 10px;
+    }
+  }
+  
+  /* Portrait tablets and small desktops */
+  @media (max-width: 767px) {
+    .content-box {
+      padding: 5px;
+    }
+    
+    table {
+      font-size: 14px;
+    }
+  }
+  
+  /* Mobile phones */
+  @media (max-width: 480px) {
+    .content-box {
+      padding: 5px;
+    }
+    
+    table {
+      font-size: 12px;
+    }
+  }

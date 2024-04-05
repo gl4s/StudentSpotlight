@@ -11,6 +11,8 @@
 }
 
 .box {
+  width: 100%;
+  max-width: 1400px;
   background-color: #f1f1f1 !important;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -20,7 +22,6 @@
 .box-header {
   background-color: #f0f0f0 !important;
   display: flex;
-  color: #3498db !important;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #75b8b8;
@@ -48,12 +49,14 @@ h2 {
   transition: background-color 0.3s, color 0.3s;
 }
 
+/* ... (other styles) */
 .box-content {
   padding: 10px;
 }
 
 .filter-section {
   margin-bottom: 20px;
+  flex-basis: 100%; /* Take full width on small screens */
 }
 
 label {
@@ -73,74 +76,57 @@ select {
   color: #333;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  color: #3498db;
+}
+
+/* ... (previous styles) */
+
 .table-container {
-  overflow-x: auto;
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 400px; /* Set max height to enable scrolling */
 }
 
 .table {
   border-collapse: collapse;
   width: 100%;
-  font-size: 13px;
 }
 
 .table th,
 .table td {
   padding: 8px;
   border-bottom: 1px solid #ddd;
-  text-align: center;
+  text-align: left; /* Align text to the left */
 }
 
 .table th {
   background-color: #f2f2f2;
+  width: 150px !important; /* Set a fixed width for header cells */
+}
+
+/* Adjust the width of the first column header */
+.table th:first-child {
+  width: auto; /* Set the width of the first column header to auto */
+}
+
+.table td {
+  width: 150px !important; /* Set a fixed width for body cells */
+  max-height: max-content !important;
+  margin: 4px !important;
+}
+
+.table button {
+  margin-right: 5px;
 }
 
 .table tbody tr {
   vertical-align: top;
-}
-
-@media screen and (max-width: 768px) {
-  .dashboard-container {
-    padding: 0 10px;
-  }
-
-  .box-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .back-button {
-    margin-bottom: 10px;
-  }
-
-  .filter-section {
-    margin-bottom: 10px;
-  }
-
-  select {
-    font-size: 14px;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .box-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-
-  .back-button {
-    margin-bottom: 10px;
-  }
-
-  .filter-section {
-    margin-bottom: 10px;
-  }
-
-  select {
-    font-size: 14px;
-  }
+  white-space: normal;
 }

@@ -14,14 +14,27 @@ const AddClassModal = ({ isOpen, onClose }) => {
   useEffect(() => {
     const fetchAvailableTeachers = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/classes/availableteachers');
-        // console.log(response.data);
+        const token = localStorage.getItem('token');
+        console.log('Token:', token); //debug the token
+        const decodedToken = parseJwt(token);
+        const userId = decodedToken.userId;
+        console.log("before the get api call:", decodedToken.userId);
+
+        const response = await axios.get(`http://localhost:3001/api/classes/availableteachers`, {
+          params: {
+            userId: decodedToken.userId,
+          },
+        });
+        
+        console.log('Response:', response); // debug the response
+
         setAvailableTeachers(response.data.teachers.flat());
       } catch (error) {
-        console.error('Error fetching schools', error);
+        console.error('Error fetching available teachers:', error);
       }
     };
-    fetchAvailableTeachers()
+
+    fetchAvailableTeachers();
   }, [successMessage]);
 
   const handleClassNameChange = (e) => {
@@ -47,29 +60,29 @@ const AddClassModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Check if the input fields are empty
     if (selectedClassName === '' || selectedHeadTeacher === '') {
       alert('Please fill all the fields before submitting');
       return;
     }
-  
+
     // Get the token from local storage
     const token = localStorage.getItem('token');
-  
+
     // Decode the token
     const decodedToken = parseJwt(token);
-  
+
     // Extract the schoolId
     const schoolId = decodedToken.schoolID;
-  
+
     try {
       const response = await axios.post('http://localhost:3001/api/classes/addclass', {
         className: selectedClassName,
         headTeacherId: selectedHeadTeacher,
         schoolId: schoolId,
       });
-  
+
       if (response.data.success) {
         setSuccessMessage('Class added successfully.');
         setSelectedClassName('');

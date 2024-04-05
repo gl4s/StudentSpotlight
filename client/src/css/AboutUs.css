@@ -1,0 +1,41 @@
+/* AboutUs.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-box {
+    background-color: #f8f9fa;
+    padding: 50px;
+    margin-top: 20px; /* Reduced margin-top to prevent navbar overlap */
+    border-radius: 5px;
+}
+
+.content {
+    margin: auto;
+    max-width: 800px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.list-unstyled {
+    list-style: none;
+    padding-left: 0;
+}
+
+.img-responsive {
+    max-width: 20%;
+    height: auto;
+   
+    margin: auto;
+}

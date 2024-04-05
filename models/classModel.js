@@ -36,7 +36,7 @@ class classModel {
     }
   }
 
-  static async getClassesWithTeachers() {
+  static async getClassesWithTeachers(schoolId) {
     try {
       const query = `
         SELECT 
@@ -48,14 +48,16 @@ class classModel {
           u.LastName AS HeadTeacherLastName
         FROM Classes c
         LEFT JOIN Users u ON c.HeadTeacherID = u.UserID
+        WHERE c.SchoolID = ?
       `;
-      const [rows] = await db.query(query);
+      const [rows] = await db.query(query, [schoolId]);
       return rows;
     } catch (error) {
       console.error('Error getting classes with teachers:', error);
       throw error;
     }
   }
+
 
 
   static async getStudentsByClass(classId) {
