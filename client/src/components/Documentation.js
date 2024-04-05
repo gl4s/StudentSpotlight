@@ -9,7 +9,7 @@ const AboutUs = () => {
         <div className='container main-container'>
             <Navbar />
 
-            {/* Ide ird a tartalmat */}
+            {/* Nem használt, a letöltés enélkül is megtörténik */}
 
             <Footer />
         </div>

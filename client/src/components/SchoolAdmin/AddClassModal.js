@@ -15,10 +15,8 @@ const AddClassModal = ({ isOpen, onClose }) => {
     const fetchAvailableTeachers = async () => {
       try {
         const token = localStorage.getItem('token');
-        console.log('Token:', token); //debug the token
         const decodedToken = parseJwt(token);
         const userId = decodedToken.userId;
-        console.log("before the get api call:", decodedToken.userId);
 
         const response = await axios.get(`http://localhost:3001/api/classes/availableteachers`, {
           params: {
@@ -26,7 +24,6 @@ const AddClassModal = ({ isOpen, onClose }) => {
           },
         });
         
-        console.log('Response:', response); // debug the response
 
         setAvailableTeachers(response.data.teachers.flat());
       } catch (error) {

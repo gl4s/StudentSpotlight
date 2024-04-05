@@ -34,8 +34,6 @@ const StudentLogin = () => {
         try {
             const username = `${selectedSchool}-${studentId}`;
 
-            // Debug log
-            console.log('Username:', username);
 
             const response = await axios.post(
                 'http://localhost:3001/api/auth/login',

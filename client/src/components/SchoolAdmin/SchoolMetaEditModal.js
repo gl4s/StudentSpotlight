@@ -43,7 +43,6 @@ const SchoolMetaEditModal = ({ isOpen, onClose, onEdit, editableFields, setEdita
             const decodedToken = parseJwt(token);
             const schoolId = decodedToken.schoolID;
 
-            console.log('Submitting form with school ID:', schoolId); //debug log
 
             const apiUrl = `http://localhost:3001/api/school/editSchoolAdmin/${schoolId}`;
             const headers = {

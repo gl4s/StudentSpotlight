@@ -35,10 +35,6 @@ const SchoolReg = () => {
                 password,
             });
 
-            // Handle successful registration (you can redirect or show a success message)
-            console.log('School registration successful!', response.data);
-
-            // Use an alert box to display a message
             window.alert('Registration successful! \nYou will be redirected to the Mainpage after closing this window.');
 
             // Redirect to the main page

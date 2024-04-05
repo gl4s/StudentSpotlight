@@ -6,7 +6,6 @@ import Footer from './Footer.js';
 import '../css/Navbar.css';
 import '../css/Footer.css';
 import TeacherComp from './TeacherComp.js'
-// const authenticateToken = require('../../../routes/controllers/authMiddleware.js');
 
 // Teacher.js
 const Teacher = () => {

@@ -146,10 +146,6 @@ const NewUserSchoolAdminComp = () => {
             className='date-input'
           />
         </div>
-        {/* <div className="form-group">
-          <label htmlFor="file">Upload File:</label>
-          <input type="file" id="file" onChange={handleFileChange} accept=".csv, .xls, .xlsx, .txt" />
-        </div> */}
         <button type="submit" className='submit-button'>Create User</button>
       </form>
     </div>

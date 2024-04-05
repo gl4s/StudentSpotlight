@@ -74,9 +74,6 @@ const MainSchoolAdminComp = () => {
                         Member List
                     </button>
                    
-                    {/* <button className="btn btn-primary" onClick={() => navigate('/statistics')}>
-                        Statistics
-                    </button> */}
                 </div>
             </div>
         </div>

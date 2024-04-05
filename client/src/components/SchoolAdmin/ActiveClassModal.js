@@ -46,7 +46,6 @@ const ActiveClassModal = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log('Token:', token); // debug the token
     fetchClasses(token);
   }, [isOpen]);
 

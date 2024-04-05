@@ -26,7 +26,6 @@ const SystemAdmin = () => {
                 setRemainingTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
             }, 1000);
 
-            // Cleanup interval on component unmount
             return () => clearInterval(intervalId);
         }
     }, []);
@@ -63,7 +62,6 @@ const SystemAdmin = () => {
             <div className="buttons">
                 <button onClick={() => navigate('/schools')}>Schools</button>
                 <button onClick={() => navigate('/globalsubjects')}>Global Subjects</button>
-                {/* <button onClick={() => navigate('/schoolstatistics')}>School Statistics</button> */}
             </div>
         </div>
     );

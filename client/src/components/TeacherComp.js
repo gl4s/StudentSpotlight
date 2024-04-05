@@ -21,7 +21,6 @@ const TeacherComp = () => {
                 setRemainingTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
             }, 1000);
 
-            // Cleanup interval on component unmount
             return () => clearInterval(intervalId);
         }
     }, []);

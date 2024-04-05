@@ -56,7 +56,6 @@ const SchoolMetaComp = () => {
       const decodedToken = parseJwt(token);
       const schoolId = decodedToken.schoolID;
 
-      console.log('Fetching school data for school ID:', schoolId); //debug log
 
       const response = await axios.get(`http://localhost:3001/api/school/schools/${schoolId}`, {
         headers: {
@@ -64,7 +63,6 @@ const SchoolMetaComp = () => {
         },
       });
       const schoolData = response.data;
-      console.log('Fetched school data:', schoolData); //debug log
       setEditableFields(schoolData);
     } catch (error) {
       console.error('Error fetching school data:', error);

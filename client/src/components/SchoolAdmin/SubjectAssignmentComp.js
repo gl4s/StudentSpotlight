@@ -16,7 +16,6 @@ const SubjectAssignmentComp = () => {
         const token = localStorage.getItem('token');
         if (token) {
             const decodedToken = decodeToken(token);
-            console.log('Decoded Token:', decodedToken); // Debug Point
             fetchTableData();
             fetchSubjects();
             fetchTeachers(decodedToken.userId); // Pass the schoolID to the fetchTeachers function
@@ -54,7 +53,6 @@ const SubjectAssignmentComp = () => {
     const fetchTeachers = async (schoolId) => {
         try {
             const token = localStorage.getItem('token');
-            console.log('Token:', token); // Debug the token
             const decodedToken = decodeToken(token);
             console.log("Before the get API call:", decodedToken.userId);
     
@@ -65,7 +63,6 @@ const SubjectAssignmentComp = () => {
                 },
             });
     
-            console.log('Teachers fetched:', response.data); // Debug the response
     
             setTeachers(response.data);
         } catch (error) {

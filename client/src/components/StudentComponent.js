@@ -21,8 +21,6 @@ const StudentComp = () => {
             const intervalId = setInterval(() => {
                 setRemainingTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
             }, 1000);
-
-            // Cleanup interval on component unmount
             return () => clearInterval(intervalId);
         }
     }, []);
@@ -48,7 +46,6 @@ const StudentComp = () => {
 
     return (
         <>
-            {/* Existing content-box */}
             <div className="content-box">
                 <div className="header">
                     <p className='title'>
