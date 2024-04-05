@@ -1,6 +1,7 @@
 .teacher-comp-container {
     max-width: 600px;
     margin: 20px auto;
+    margin-top: 20% !important;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -12,6 +13,10 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+}
+
+.container {
+    margin: 0 !important;
 }
 
 .title {
