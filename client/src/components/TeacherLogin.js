@@ -34,8 +34,6 @@ const TeacherLogin = () => {
         try {
             const username = `${selectedSchool}-${employeeId}`;
 
-            // Debug log
-            console.log('Username:', username);
 
             const response = await axios.post(
                 'http://localhost:3001/api/auth/login',
@@ -45,13 +43,11 @@ const TeacherLogin = () => {
                 },
             );
 
-            console.log('Login successful!', response.data);
 
             const userType = response.data.userType;
             const token = response.data.token;
             // const schoolName = response.data.schoolName;
 
-            console.log('User Type:', userType);
             localStorage.setItem('token', token);
 
             window.alert('Login successful!');

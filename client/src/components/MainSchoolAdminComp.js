@@ -61,9 +61,6 @@ const MainSchoolAdminComp = () => {
                     </div>
                 </div>
                 <div className="buttons">
-                    <button className="btn btn-primary" onClick={() => navigate('/schoolschedule')}>
-                        School Schedule
-                    </button>
                     <button className="btn btn-primary" onClick={() => navigate('/schoolmeta')}>
                         School Meta
                     </button>

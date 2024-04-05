@@ -14,7 +14,6 @@ const SchoolAdmin = () => {
         const verifyToken = async () => {
             try {
                 const token = localStorage.getItem('token');
-                console.log('Token:', token);
                 
                 if (!token) {
                     setIsAuthenticated(false);
