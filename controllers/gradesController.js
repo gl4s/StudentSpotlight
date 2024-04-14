@@ -4,7 +4,8 @@ const GradesModel = require('../models/gradesModel');
 
 const gradesController = {
     addGrade: async (req, res) => {
-        const { studentId, teacherId, schoolIdentifier, grade, description } = req.body;
+        const { teacherId, schoolIdentifier, grade, description } = req.body;
+        const studentId = req.params.studentId;
         try {
             const success = await GradesModel.addGrade(studentId, teacherId, schoolIdentifier, grade, description);
             if (success) {
@@ -18,6 +19,7 @@ const gradesController = {
 
     getGrades: async (req, res) => {
         const studentId = req.params.studentId;
+        console.log(`Fetching grades for studentId: ${studentId}`);
         try {
             const grades = await GradesModel.getGrades(studentId);
             res.status(200).json(grades);
