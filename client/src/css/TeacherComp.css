@@ -15,8 +15,13 @@
     margin-bottom: 20px;
 }
 
+.content-box {
+    margin-top: 30%;
+    margin-bottom: 0;
+}
+
 .container {
-    margin: 0 !important;
+    max-height: 500px !important;
 }
 
 .title {
