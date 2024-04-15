@@ -73,7 +73,7 @@ const StudentLogin = () => {
             <Navbar />
             <div className="login-box">
                 <div className='login-header'>
-                    <Link to="/" className="btn btn-secondary">Back</Link>
+                    <Link to="/" className="btn btn-secondary back-button">Back</Link>
                     <h2 className="login-label">Student Login</h2>
                 </div>
                 <form className="login-form" onSubmit={handleLogin}>

@@ -23,6 +23,7 @@ const TeacherClasses = () => {
                     Back
                 </button>
                 <h2>Weekly Time Schedule</h2>
+                <div className='table-responsive'>
                 <table className="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -116,6 +117,7 @@ const TeacherClasses = () => {
                         </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
 
             <Footer />

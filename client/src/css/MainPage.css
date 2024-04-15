@@ -80,3 +80,27 @@ body {
     text-align: center;
     color: #64a6a6;
 }
+
+
+
+/* MainPage.css */
+
+@media (max-width: 768px) {
+    
+    .mini-banner {
+        max-height: 115px;
+        max-width: 1050px; /* Adjusted max-width for smaller screens */
+        
+   }
+
+    .section-box {
+       
+        max-height: 350px;
+
+        padding: 10px; /* Adjusted padding for smaller screens */
+    }
+
+    
+    
+}
+

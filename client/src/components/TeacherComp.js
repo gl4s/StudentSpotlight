@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const TeacherComp = () => {
     const [remainingTime, setRemainingTime] = useState(0);
 
@@ -47,11 +48,14 @@ const TeacherComp = () => {
     return (
         <>
            
-            <div className="content-box">
+            <div className="content-box" style={{marginTop:'600px'}}>
+           
                 <div className="header">
+               
                     <p className='title'>
                         Manage your classes, assignments, and grades efficiently.
                     </p>
+                    
                     <div className="logout-section">
                         <button className="btn btn-danger logout-button" onClick={handleLogout}>
                             Logout
@@ -59,13 +63,17 @@ const TeacherComp = () => {
                         <p className="counter">Remaining Time: {formatTime(remainingTime)}</p>
                     </div>
                 </div>
+                
                 <div className="buttons">
+               
                     <button onClick={() => navigate('/TeacherClasses')}>Classes</button>
                     <button onClick={() => navigate('/TeacherAssignments')}>Assignments</button>
                     <button onClick={() => navigate('/TeacherGrades')}>Grades</button>
                     <button onClick={() => navigate('/TeacherProfile')}>Profile</button>
                 </div>
             </div>
+            
+            
 
            
             <div className="container">
@@ -86,6 +94,7 @@ const TeacherComp = () => {
                     </div>
                 </div>
             </div>
+        
         </>
     );
 };

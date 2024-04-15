@@ -1,0 +1,10 @@
+
+
+@media (max-width: 768px) {
+    .content-box form {
+        width: 40%;
+        margin: 0 auto;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+}

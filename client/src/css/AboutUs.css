@@ -10,6 +10,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    overflow-y: hidden;
 }
 
 .content-box {
@@ -17,6 +18,7 @@
     padding: 50px;
     margin-top: 20px; /* Reduced margin-top to prevent navbar overlap */
     border-radius: 5px;
+    
 }
 
 .content {
@@ -39,3 +41,13 @@
    
     margin: auto;
 }
+
+/* AboutUs.css */
+
+@media (max-width: 768px) {
+    .content-box p {
+      max-width: 27%;
+      margin: 0 auto;
+    }
+  }
+  

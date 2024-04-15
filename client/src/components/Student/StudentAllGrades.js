@@ -27,48 +27,48 @@ const StudentAllGrades = () => {
                         </button>
                         <form>
                             <select className='form-control form-control-sm mt-4'>
-                                <option value="">Classes</option>
+                                <option value="">Subjects</option>
                             </select>
                         </form>
                     </div>
 
-                    <table className="table table-bordered table-striped">
+                    <table className="table table-bordered table-striped table-responsive">
                             <thead>
                             <tr>
-                                <th>Class</th>
+                                <th>Subject</th>
                                 <th>Grade</th>
                                 <th>Signing Teacher</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td className='col-md-2'></td>
+                                <td className='col-md-2'></td>
+                                <td className='col-md-2'></td>
                             </tr>
 
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td className='col-md-2'></td>
+                                <td className='col-md-2'></td>
+                                <td className='col-md-2'></td>
                             </tr>
 
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td className='col-md-2'></td>
+                                <td className='col-md-2'></td>
+                                <td className='col-md-2'></td>
                             </tr>
 
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td className='col-md-2'></td>
+                                <td className='col-md-2'></td>
+                                <td className='col-md-2'></td>
                             </tr>
 
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td className='col-md-2'></td>
+                                <td className='col-md-2'></td>
+                                <td className='col-md-2'></td>
                             </tr>
                         </tbody>
                     </table>

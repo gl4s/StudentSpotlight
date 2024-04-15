@@ -33,6 +33,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.2",
     "react-modal": "^3.16.1",
+    "react-responsive": "^10.0.0",
     "request-promise": "^0.0.1"
   },
   "devDependencies": {

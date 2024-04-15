@@ -4,7 +4,7 @@ import Footer from './Footer.js';
 import '../css/Navbar.css';
 import '../css/Footer.css';
 
-const AboutUs = () => {
+const Documentation = () => {
     return (
         <div className='container main-container'>
             <Navbar />
@@ -16,4 +16,4 @@ const AboutUs = () => {
     );
 };
 
-export default AboutUs;
+export default Documentation;

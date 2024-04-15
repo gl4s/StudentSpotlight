@@ -3,8 +3,10 @@ import Navbar from './Navbar.js';
 import Footer from './Footer.js';
 import '../css/Navbar.css';
 import '../css/Footer.css';
+import '../css/contact.css';
 import react, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+
 
 const ContactUs = () => {
     const [formData, setFormData] = useState({
@@ -12,11 +14,6 @@ const ContactUs = () => {
         email: '',
         message: ''
     });
-
-
-
-
-
 
     const form = useRef();
 
@@ -39,10 +36,11 @@ const ContactUs = () => {
     };
 
     return (
-        <div className='container main-container'>
+        <div className='main-container'>
             <Navbar />
-
+            <div className='col-md-12'>
             <div className="content-box">
+                
                 <h2 className='text-center'>Contact Us</h2>
                 <p className='text-center'>
                     Have questions or feedback? Reach out to us using the form below, and we'll get back to you as soon as possible.
@@ -65,16 +63,11 @@ const ContactUs = () => {
                     </form>
                 </div>
             </div>
+            </div>
 
-            <Footer />
+            <Footer/>
         </div>
     );
-
-
-
-    <Footer />
-
-
 };
 
 export default ContactUs;
