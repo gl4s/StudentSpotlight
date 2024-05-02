@@ -5,12 +5,12 @@ import '../css/Footer.css';
 const Footer = () => {
   const handleDownload = () => {
     // Construct the URL to your local documentation file
-    const documentationUrl = "/studentspotlight.docx";
+    const documentationUrl = "/studentspotlight.pdf";
     // Create a temporary link element
     const link = document.createElement("a");
     link.href = documentationUrl;
     // Set the download attribute and filename
-    link.setAttribute("download", "studentspotlight.docx");
+    link.setAttribute("download", "studentspotlight.pdf");
     // Trigger the click event to start the download
     document.body.appendChild(link);
     link.click();
