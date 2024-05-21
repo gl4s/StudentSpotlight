@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import axios from 'axios';
 import '../css/SchoolAdminComp.css';
 
 const MainSchoolAdminComp = () => {
@@ -49,7 +48,7 @@ const MainSchoolAdminComp = () => {
     };
 
     return (
-        <div className="container main-container">
+        <div className="container-fluid main-container">
             <div className="content-box">
                 <div className="header">
                     <h2 className="title">{schoolName}</h2>
@@ -60,26 +59,32 @@ const MainSchoolAdminComp = () => {
                         <p className="counter">Remaining Time: {formatTime(remainingTime)}</p>
                     </div>
                 </div>
-                <div className="buttons">
-                    <button className="btn btn-primary" onClick={() => navigate('/schoolmeta')}>
-                        School Meta
-                    </button>
-                    <button className="btn btn-primary" onClick={() => navigate('/subjectassignment')}>
-                        Subject Teacher
-                    </button>
-                    <button className="btn btn-primary" onClick={() => navigate('/newuser')}>
-                        New Student or Teacher
-                    </button>
-                    <button className="btn btn-primary" onClick={() => navigate('/members')}>
-                        Member List
-                    </button>
-                   
+                <div className="buttons row justify-content-center">
+                    <div className="col-lg-3 col-md-6 col-sm-12 mb-3">
+                        <button className="btn btn-primary w-100" onClick={() => navigate('/schoolmeta')}>
+                            School Meta
+                        </button>
+                    </div>
+                    <div className="col-lg-3 col-md-6 col-sm-12 mb-3">
+                        <button className="btn btn-primary w-100" onClick={() => navigate('/subjectassignment')}>
+                            Subject Teacher
+                        </button>
+                    </div>
+                    <div className="col-lg-3 col-md-6 col-sm-12 mb-3">
+                        <button className="btn btn-primary w-100" onClick={() => navigate('/newuser')}>
+                            New Student or Teacher
+                        </button>
+                    </div>
+                    <div className="col-lg-3 col-md-6 col-sm-12">
+                        <button className="btn btn-primary w-100" onClick={() => navigate('/members')}>
+                            Member List
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
-
 
 const formatTime = (seconds) => {
     const hours = Math.floor(seconds / 3600);
@@ -88,6 +93,5 @@ const formatTime = (seconds) => {
 
     return `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 };
-
 
 export default MainSchoolAdminComp;

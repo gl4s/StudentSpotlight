@@ -47,25 +47,37 @@ const StudentComp = () => {
 
     return (
         <>
+            <div className="container-fluid main-container">
             <div className="content-box">
                 <div className="header">
-                    <p className='title'>
-                        Manage your classes, assignments, and grades efficiently.
-                    </p>
+                    <h2 className="title">Manage your classes, assignments and grades efficiently</h2>
                     <div className="logout-section">
-                        <button className="logout-button" onClick={handleLogout}>
+                        <button className="btn btn-danger logout-button" onClick={handleLogout}>
                             Logout
                         </button>
                         <p className="counter">Remaining Time: {formatTime(remainingTime)}</p>
                     </div>
                 </div>
-                <div className="buttons">
-                    <button onClick={() => navigate('/StudentFullScheduele')}>Schedule</button>                   
-                    <button onClick={() => navigate('/StudentAllGrades')}>Grades</button>
-                    <button onClick={() => navigate('/StudentProfile')}>Profile</button>
+                <div className="buttons row justify-content-center">
+                    <div className="col-lg-3 col-md-6 col-sm-12 mb-3">
+                        <button className="btn btn-primary w-100" onClick={() => navigate('/studentfullscheduele')}>
+                            Scheduele
+                        </button>
+                    </div>
+                    <div className="col-lg-3 col-md-6 col-sm-12 mb-3">
+                        <button className="btn btn-primary w-100" onClick={() => navigate('/studentallgrades')}>
+                            Grades
+                        </button>
+                    </div>
+                    <div className="col-lg-3 col-md-6 col-sm-12 mb-3">
+                        <button className="btn btn-primary w-100" onClick={() => navigate('/studentprofile')}>
+                           Profile
+                        </button>
+                    </div>
+                    
                 </div>
             </div>
-
+        </div>
            
             <div className="content-box">
             <div className='row'>

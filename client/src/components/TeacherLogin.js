@@ -71,7 +71,7 @@ const TeacherLogin = () => {
 
 
     return (
-        <div className='container main-container'>
+        <div className='container-fluid main-container'>
             <Navbar />
             <div className="login-box">
                 <div className='login-header'>

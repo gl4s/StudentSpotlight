@@ -47,7 +47,7 @@ const SchoolReg = () => {
     };
 
     return (
-        <div className='container main-container'>
+        <div className='container-fluid main-container'>
             <Navbar />
             <div className="registration-box">
                 <div className='registration-header'>

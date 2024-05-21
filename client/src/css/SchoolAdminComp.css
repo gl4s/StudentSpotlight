@@ -9,11 +9,12 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 100px;
 }
 
 .content-box {
   min-width: max-content;
-  max-width: 1000px;
+  max-width: 100%;
   background-color: #f0f0f0;
   padding: 20px;
   border-radius: 8px;
@@ -74,5 +75,23 @@ button:hover {
   color: #7f8c8d;
 }
 
-
+@media (max-width: 768px) {
+  .title {
+      font-size: 24px;
+  }
+  .content-box {
+      padding: 20px;
+      overflow:hidden;
+      max-width: 100%;
+      
+  }
+  .buttons {
+      flex-direction: column;
+  }
+  .buttons .col-lg-3, .buttons .col-md-6, .buttons .col-sm-12 {
+      flex: 1 0 100%;
+      max-width: 100%;
+  }
+  
+}
 

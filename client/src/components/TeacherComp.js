@@ -49,14 +49,10 @@ const TeacherComp = () => {
     return (
         <>
            
-            <div className="content-box" style={{marginTop:'600px'}}>
-           
+           <div className="container-fluid main-container">
+            <div className="content-box">
                 <div className="header">
-               
-                    <p className='title'>
-                        Manage your classes, assignments, and grades efficiently.
-                    </p>
-                    
+                    <h2 className="title">Manage your classes, assignments and grades efficiently</h2>
                     <div className="logout-section">
                         <button className="btn btn-danger logout-button" onClick={handleLogout}>
                             Logout
@@ -64,15 +60,30 @@ const TeacherComp = () => {
                         <p className="counter">Remaining Time: {formatTime(remainingTime)}</p>
                     </div>
                 </div>
-                
-                <div className="buttons">
-               
-                    <button onClick={() => navigate('/TeacherClasses')}>Classes</button>
-                    <button onClick={() => navigate('/TeacherAssignments')}>Assignments</button>
-                    <button onClick={() => navigate('/TeacherGrades')}>Grades</button>
-                    <button onClick={() => navigate('/TeacherProfile')}>Profile</button>
+                <div className="buttons row justify-content-center">
+                    <div className="col-lg-3 col-md-6 col-sm-12 mb-3">
+                        <button className="btn btn-primary w-100" onClick={() => navigate('/teacherclasses')}>
+                            Classes
+                        </button>
+                    </div>
+                    <div className="col-lg-3 col-md-6 col-sm-12 mb-3">
+                        <button className="btn btn-primary w-100" onClick={() => navigate('/teacherassignments')}>
+                            Assignments
+                        </button>
+                    </div>
+                    <div className="col-lg-3 col-md-6 col-sm-12 mb-3">
+                        <button className="btn btn-primary w-100" onClick={() => navigate('/teachergrades')}>
+                           Grades
+                        </button>
+                    </div>
+                    <div className="col-lg-3 col-md-6 col-sm-12">
+                        <button className="btn btn-primary w-100" onClick={() => navigate('/teacherprofile')}>
+                           Profile
+                        </button>
+                    </div>
                 </div>
             </div>
+        </div>
             
             
 
