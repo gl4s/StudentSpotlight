@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Tábla szerkezet ehhez a táblához `attendance`
 --
+USE studentspotlight;
 
 CREATE TABLE `attendance` (
   `AttendanceID` int(11) NOT NULL,
